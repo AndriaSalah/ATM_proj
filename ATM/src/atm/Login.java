@@ -17,6 +17,7 @@ public class Login extends JFrame {
     public Login() {
         //panel init
         JPanel p = new JPanel();
+        p.setBackground(new Color(166, 163, 163));
         JPanel p1, p2, p3, p4, p5, p6;
 
         p.setLayout(new GridLayout(6, 1));
