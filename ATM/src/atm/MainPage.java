@@ -6,157 +6,128 @@
 package atm;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
-public class MainPage extends JFrame {
+public  class MainPage extends JFrame implements ActionListener {
 
+    JButton balance_info,deposit,withdraw,accounts,pay_credit,fawry ;
+    Color c =new Color(60, 70, 92);
+    Dimension d = new Dimension(200,50);
+    Font f = new Font("SansSerif",Font.PLAIN,17);
+    Font f2 = new Font("SansSerif",Font.PLAIN,34);
+    int Balance = 10000 ;
+    String account_number = "4xba298349" ;
+    String name = "Andria" ;
     public MainPage() {
-        javax.swing.JButton jButton1;
-        javax.swing.JButton jButton2;
-        javax.swing.JButton jButton3;
-        javax.swing.JButton jButton4;
-        javax.swing.JButton jButton5;
-        javax.swing.JButton jButton6;
-        javax.swing.JLabel jLabel1;
-        javax.swing.JPanel jPanel1;
-        java.awt.GridBagConstraints gridBagConstraints;
+        //frame specs
+        this.setTitle("National Bank Of Egypt ATM");
+        this.setVisible(true);
+        this.setSize(755, 463);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+    JLabel l1 = new JLabel("National bank of Egypt services",SwingConstants.CENTER) ;
+    l1.setFont(f2);
+    l1.setForeground(Color.WHITE);
+    JPanel pb,p1,p2,p3,p4 ;
+    pb = new JPanel(new GridLayout(4,1,20,20));
+    pb.setBackground(c);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    //title
+    p1= new JPanel(new GridLayout(1,1,20,20));
+    p1.setBackground(new Color(194, 123, 85));
+    p1.setBorder(new EtchedBorder(3));
+    p1.add(l1,SwingConstants.CENTER);
 
-        jPanel1.setBackground(new Color(204, 204, 204));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+    //first 2 buttons
+    p2 = new JPanel(new BorderLayout());
+    p2.setBackground(c);
+    balance_info = new JButton("BALANCE INFO");
+        balance_info.setPreferredSize(d);
+        balance_info.setFont(f);
+        balance_info.setBackground(new Color(91, 91, 91));
+        balance_info.setForeground(new Color(228, 228, 228));
+        balance_info.addActionListener(this);
+    deposit = new JButton("DEPOSIT");
+        deposit.setPreferredSize(d);
+        deposit.setFont(f);
+        deposit.setBackground(new Color(91, 91, 91));
+        deposit.setForeground(new Color(228, 228, 228));
+        deposit.addActionListener(this);
+    p2.add(balance_info,BorderLayout.EAST);
+    p2.add(deposit,BorderLayout.WEST);
 
-        //button Fawry
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setForeground(new Color(204,204,204));
-        jButton1.setText("Fawry");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 63;
-        gridBagConstraints.ipady = 56;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(38, 117, 0, 0);
-        jPanel1.add(jButton1, gridBagConstraints);
+    // second 2 buttons
+    p3= new JPanel(new BorderLayout());
+    p3.setBackground(c);
+    withdraw = new JButton("WITHDRAW");
+        withdraw.setPreferredSize(d);
+        withdraw.setFont(f);
+        withdraw.setBackground(new Color(91, 91, 91));
+        withdraw.setForeground(new Color(228, 228, 228));
+        withdraw.addActionListener(this);
+    accounts = new JButton("ACCOUNT INFO");
+        accounts.setPreferredSize(d);
+        accounts.setFont(f);
+        accounts.setBackground(new Color(91, 91, 91));
+        accounts.setForeground(new Color(228, 228, 228));
+        accounts.addActionListener(this);
+    p3.add(withdraw,BorderLayout.EAST);
+    p3.add(accounts,BorderLayout.WEST);
 
-        // button Accounts
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setForeground(new java.awt.Color(204, 204, 204));
-        jButton2.setText("Accounts");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 49;
-        gridBagConstraints.ipady = 56;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(38, 281, 0, 0);
-        jPanel1.add(jButton2, gridBagConstraints);
+    //third 2 buttons
+    p4 = new JPanel(new BorderLayout());
+    p4.setBackground(c);
+    pay_credit = new JButton("CREDIT CARD");
+        pay_credit.setPreferredSize(d);
+        pay_credit.setFont(f);
+        pay_credit.setBackground(new Color(91, 91, 91));
+        pay_credit.setForeground(new Color(228, 228, 228));
+        pay_credit.addActionListener(this);
+    fawry = new JButton("FAWRY");
+        fawry.setPreferredSize(d);
+        fawry.setFont(f);
+        fawry.setBackground(new Color(91, 91, 91));
+        fawry.setForeground(new Color(228, 228, 228));
+        fawry.addActionListener(this);
+    p4.add(pay_credit,BorderLayout.EAST);
+    p4.add(fawry,BorderLayout.WEST);
 
+    //add to base
+        pb.add(p1);
+        pb.add(p2);
+        pb.add(p3);
+        pb.add(p4);
+        this.add(pb);
+    }
 
-        // Deposit button
-        jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setForeground(new Color(204,204,204));
-        jButton3.setText("Deposit");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 57;
-        gridBagConstraints.ipady = 59;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 281, 54, 0);
-        jPanel1.add(jButton3, gridBagConstraints);
-
-
-        //pay your credit card button
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setForeground(new Color(204,204,204));
-        jButton4.setText("Pay your credit card");
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipady = 59;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(42, 117, 54, 0);
-        jPanel1.add(jButton4, gridBagConstraints);
-
-
-        // balance info button
-        jButton5.setBackground(new java.awt.Color(0, 0, 0));
-        jButton5.setForeground(new Color(204,204,204));
-        jButton5.setText("Balance info");
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 40;
-        gridBagConstraints.ipady = 56;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 117, 0, 0);
-        jPanel1.add(jButton5, gridBagConstraints);
-
-        //withdrawal button
-        jButton6.setBackground(new java.awt.Color(0, 0, 0));
-        jButton6.setForeground(new Color(204,204,204));
-        jButton6.setText("Withdrawl");
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 45;
-        gridBagConstraints.ipady = 56;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 281, 0, 0);
-        jPanel1.add(jButton6, gridBagConstraints);
-
-        // label section
-
-        jLabel1.setBackground(new java.awt.Color(0, 107, 0));
-        jLabel1.setForeground(new Color(204,204,204));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 33)); // NOI18N
-        jLabel1.setText("                National Bank Of Egypt services");
-        jLabel1.setOpaque(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 170;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 6, 0, 6);
-        jPanel1.add(jLabel1, gridBagConstraints);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
-        );
-
-        pack();
-        this.add(jPanel1);
-    }// </editor-fold>
-
-
-
-
-    // Variables declaration - do not modify
-
-    // End of variables declaration
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    switch (e.getActionCommand()){
+        case "DEPOSIT":
+            Deposit d = new Deposit();
+            //this.dispose();
+        case "BALANCE INFO":
+            //BalanceInfo b = new BalanceInfo();
+            //this.dispose();
+        case "ACCOUNT INFO":
+            //AccountInfo i = new AccountInfo();
+            //this.dispose();
+        case "WITHDRAW":
+            //Withdraw w = new Withdraw();
+            //this.dispose();
+        case "FAWRY":
+            //Fawry f = new Fawry();
+            //this.dispose();
+        case "CREDIT CARD":
+            //CreditCard c = new CreditCard();
+            //this.dispose();
 
     }
+    }
+}
 

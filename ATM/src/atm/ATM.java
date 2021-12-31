@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package atm;
-import sun.applet.Main;
+
 
 import java.awt.*;
 import javax.swing.*;
@@ -23,16 +23,23 @@ public class ATM {
   frame1.setTitle("National Bank Of Egypt ATM");
   frame1.setVisible(true);
   frame1.setSize(400, 700);
- // frame1.setBackground(new Color(166, 163, 163));
+
   frame1.setLocationRelativeTo(null);
   frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-  MainPage frame2 = new MainPage();
-  frame2.setTitle("National Bank Of Egypt ATM");
-  frame2.setVisible(true);
-  frame2.setSize(755, 463);
-  frame2.setBackground(Color.white);
-  frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  //MainPage frame2 = new MainPage();
+  //frame2.setTitle("National Bank Of Egypt ATM");
+  //frame2.setVisible(true);
+  //frame2.setSize(755, 463);
+  //frame2.setBackground(Background);
+  //frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+  //Deposit frame2 = new Deposit();
+  //frame2.setTitle("National Bank Of Egypt ATM");
+  //frame2.setVisible(true);
+  //frame2.setSize(755, 463);
+  //frame2.setBackground(Background);
+  //frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  }
 
 }
