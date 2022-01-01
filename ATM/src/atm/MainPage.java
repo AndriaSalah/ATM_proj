@@ -19,10 +19,16 @@ public  class MainPage extends JFrame implements ActionListener {
     Dimension d = new Dimension(200,50);
     Font f = new Font("SansSerif",Font.PLAIN,17);
     Font f2 = new Font("SansSerif",Font.PLAIN,34);
-    int Balance = 10000 ;
-    String account_number = "4xba298349" ;
-    String name = "Andria" ;
-    public MainPage() {
+    CustomerInfo l = new CustomerInfo();
+    int index;
+    int balance = l.balance[index];
+    String holder= l.holders[index];
+    String account_id=l.account_id[index];
+
+
+    public MainPage(int num) {
+
+        index = num;
         //frame specs
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
@@ -39,14 +45,14 @@ public  class MainPage extends JFrame implements ActionListener {
 
     //title
     p1= new JPanel(new GridLayout(1,1,20,20));
-    p1.setBackground(new Color(194, 123, 85));
+    p1.setBackground(new Color(2, 94, 2));
     p1.setBorder(new EtchedBorder(3));
     p1.add(l1,SwingConstants.CENTER);
 
     //first 2 buttons
     p2 = new JPanel(new BorderLayout());
     p2.setBackground(c);
-    balance_info = new JButton("BALANCE INFO");
+    balance_info = new JButton("BALANCE HISTORY");
         balance_info.setPreferredSize(d);
         balance_info.setFont(f);
         balance_info.setBackground(new Color(91, 91, 91));
@@ -109,16 +115,17 @@ public  class MainPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()){
         case "DEPOSIT":
-            Deposit d = new Deposit();
-            //this.dispose();
-        case "BALANCE INFO":
-            //BalanceInfo b = new BalanceInfo();
+            Deposit d = new Deposit(index);
+            break;
+        case "BALANCE HISTORY":
+            //BalanceInfo b = new BalanceHistory();
             //this.dispose();
         case "ACCOUNT INFO":
             //AccountInfo i = new AccountInfo();
             //this.dispose();
         case "WITHDRAW":
-            //Withdraw w = new Withdraw();
+            Withdraw w = new Withdraw(index);
+            break;
             //this.dispose();
         case "FAWRY":
             //Fawry f = new Fawry();
@@ -128,6 +135,7 @@ public  class MainPage extends JFrame implements ActionListener {
             //this.dispose();
 
     }
+
     }
 }
 

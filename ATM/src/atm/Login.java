@@ -11,12 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder.*;
 
 public class Login extends JFrame implements ActionListener {
     //frame stuff
     JPasswordField t1;
     JButton b, b2, b3, b4;
-
+    CustomerInfo l = new CustomerInfo();
+    int survival_index;
     public Login() {
 
         //panel init
@@ -42,8 +44,8 @@ public class Login extends JFrame implements ActionListener {
         l1.setForeground(Color.white);
         l2.setForeground(Color.white);
         l1.setOpaque(true);
-        l1.setBackground(new Color(194, 123, 85));
-        l1.setBorder(new EtchedBorder(3));
+        l1.setBackground(new Color(0, 103, 0));
+        l1.setBorder(new EtchedBorder(1));
         l2.setFont(new Font("Times", Font.PLAIN, 15));
 
 
@@ -81,6 +83,7 @@ public class Login extends JFrame implements ActionListener {
 
         //button zero
         b4 = new JButton("0");
+        b4.addActionListener(this);
         b4.setPreferredSize(new Dimension(125, 35));
         b4.setBorder(new SoftBevelBorder(1));
         b4.setBackground(new Color(91, 91, 91));
@@ -107,7 +110,7 @@ public class Login extends JFrame implements ActionListener {
         b2 = new JButton("Login");
         b2.addActionListener(this);
         b2.setPreferredSize(new Dimension(150, 50));
-        b2.setBackground(new Color(0, 153, 0));
+        b2.setBackground(new Color(0, 103, 0));
         b2.setForeground(Color.white);
         b2.setBorder(new EtchedBorder(1));
 
@@ -116,7 +119,7 @@ public class Login extends JFrame implements ActionListener {
         b3 = new JButton("Exit");
         b3.addActionListener(this);
         b3.setPreferredSize(new Dimension(150, 50));
-        b3.setBackground(new Color(153, 0, 0));
+        b3.setBackground(new Color(103, 0, 0));
         b3.setForeground(Color.white);
         b3.setBorder(new EtchedBorder(1));
         p4.add(b2);
@@ -125,11 +128,14 @@ public class Login extends JFrame implements ActionListener {
         this.add(p);
     }
     public void verify(){
-         String password = "5115";
-         String buffer = t1.getText() ;
-         if(buffer.equals(password)){
-             MainPage m = new MainPage();
-             this.dispose();
+
+         String buffer = (t1.getText() );
+         if(l.set_index(Integer.parseInt(buffer))){
+             survival_index = l.index;
+             System.out.println(survival_index);
+             MainPage m = new MainPage(survival_index);
+             //this.dispose();
+
          }
          else{JOptionPane.showMessageDialog(this,"Pin is incorrect please try again");
          t1.setText("");

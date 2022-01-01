@@ -1,5 +1,7 @@
 package atm;
 
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,8 +15,10 @@ public class Deposit extends JFrame implements ActionListener {
     Color c =new Color(60, 70, 92);
     Font f = new Font("SansSerif",Font.PLAIN,17);
     Font f2 = new Font("SansSerif",Font.PLAIN,34);
-
-    public Deposit (){
+    CustomerInfo l = new CustomerInfo();
+    int index;
+    public Deposit (int index ){
+        this.index = index ;
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
         this.setSize(555, 363);
@@ -32,6 +36,7 @@ public class Deposit extends JFrame implements ActionListener {
     l1.setForeground(Color.white);
     l1.setFont(f);
     t1 = new JTextField();
+    t1.setText(String.valueOf(l.balance[index]));
     t1.setEditable(false);
     p1.add(l1);
     p1.add(t1);
@@ -42,6 +47,7 @@ public class Deposit extends JFrame implements ActionListener {
     l2.setForeground(Color.white);
     l2.setFont(f);
     t2 = new JTextField();
+    t2.addActionListener(this);
     p2.add(l2);
     p2.add(t2);
 
@@ -78,7 +84,7 @@ public class Deposit extends JFrame implements ActionListener {
     switch (e.getActionCommand()){
 
         case "Deposit" :
-            //add();
+            add(Integer.parseInt(t2.getText()));
             JOptionPane.showMessageDialog(this,"money is deposited successfully");
             t2.setText("");
             break;
@@ -90,8 +96,15 @@ public class Deposit extends JFrame implements ActionListener {
             break;
     }
     }
-    public static void add(){
+    public void add(int num){
+        l.balance[index] += num;
+        t1.setText(String.valueOf(l.balance[index]));
 
 
-    }
+
+
+        }
+
 }
+
+
