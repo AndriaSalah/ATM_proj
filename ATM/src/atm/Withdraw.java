@@ -15,7 +15,7 @@ public class Withdraw extends JFrame implements ActionListener {
     Font f2 = new Font("SansSerif",Font.PLAIN,34);
     CustomerInfo l = new CustomerInfo();
     int index;
-    public Withdraw (int index ){
+    public Withdraw ( ){
         this.index = index ;
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);

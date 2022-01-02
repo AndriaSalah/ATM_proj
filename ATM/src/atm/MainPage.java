@@ -20,15 +20,15 @@ public  class MainPage extends JFrame implements ActionListener {
     Font f = new Font("SansSerif",Font.PLAIN,17);
     Font f2 = new Font("SansSerif",Font.PLAIN,34);
     CustomerInfo l = new CustomerInfo();
-    int index;
-    int balance = l.balance[index];
-    String holder= l.holders[index];
-    String account_id=l.account_id[index];
+    //int index;
+    //int balance = l.balance[index];
+    //String holder= l.holders[index];
+    //String account_id=l.account_id[index];
 
 
-    public MainPage(int num) {
+    public MainPage() {
 
-        index = num;
+
         //frame specs
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
@@ -115,7 +115,7 @@ public  class MainPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()){
         case "DEPOSIT":
-            Deposit d = new Deposit(index);
+            Deposit d = new Deposit();
             break;
         case "BALANCE HISTORY":
             //BalanceInfo b = new BalanceHistory();
@@ -124,7 +124,7 @@ public  class MainPage extends JFrame implements ActionListener {
             //AccountInfo i = new AccountInfo();
             //this.dispose();
         case "WITHDRAW":
-            Withdraw w = new Withdraw(index);
+            Withdraw w = new Withdraw();
             break;
             //this.dispose();
         case "FAWRY":

@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static atm.CustomerInfo.*;
 
 public class Deposit extends JFrame implements ActionListener {
     JButton b1,b2,b3;
@@ -17,8 +18,8 @@ public class Deposit extends JFrame implements ActionListener {
     Font f2 = new Font("SansSerif",Font.PLAIN,34);
     CustomerInfo l = new CustomerInfo();
     int index;
-    public Deposit (int index ){
-        this.index = index ;
+    public Deposit (){
+
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
         this.setSize(555, 363);
@@ -36,7 +37,7 @@ public class Deposit extends JFrame implements ActionListener {
     l1.setForeground(Color.white);
     l1.setFont(f);
     t1 = new JTextField();
-    t1.setText(String.valueOf(l.balance[index]));
+    t1.setText(String.valueOf(l.getBalance(index)));
     t1.setEditable(false);
     p1.add(l1);
     p1.add(t1);
@@ -97,8 +98,9 @@ public class Deposit extends JFrame implements ActionListener {
     }
     }
     public void add(int num){
-        l.balance[index] += num;
-        t1.setText(String.valueOf(l.balance[index]));
+       int temp = l.balance[l.index] + num;
+        l.setBalance(temp,l.index);
+        t1.setText(String.valueOf(l.balance[l.index]));
 
 
 

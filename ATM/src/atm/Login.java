@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder.*;
@@ -19,6 +21,7 @@ public class Login extends JFrame implements ActionListener {
     JButton b, b2, b3, b4;
     CustomerInfo l = new CustomerInfo();
     int survival_index;
+
     public Login() {
 
         //panel init
@@ -29,7 +32,6 @@ public class Login extends JFrame implements ActionListener {
         p.setLayout(new GridLayout(6, 1));
 
         //component init
-
 
 
         JLabel l1, l2;
@@ -58,9 +60,9 @@ public class Login extends JFrame implements ActionListener {
         //panel 2 for text field
         p2 = new JPanel();
         p2.setBackground(new Color(60, 70, 92));
-        t1 = new JPasswordField();
-        t1.setPreferredSize(new Dimension(125, 50));
-        t1.setFont(new Font("sans",Font.PLAIN,24));
+        t1 = new JPasswordField(2);
+        //t1.setPreferredSize(new Dimension(125, 50));
+        t1.setFont(new Font("sans", Font.PLAIN, 36));
         t1.setEditable(false);
         t1.addActionListener(this);
         p2.add(t1);
@@ -127,21 +129,22 @@ public class Login extends JFrame implements ActionListener {
         p.add(p4);
         this.add(p);
     }
-    public void verify(){
 
-         String buffer = (t1.getText() );
-         if(l.set_index(Integer.parseInt(buffer))){
-             survival_index = l.index;
-             System.out.println(survival_index);
-             MainPage m = new MainPage(survival_index);
-             //this.dispose();
+    public void verify() {
 
-         }
-         else{JOptionPane.showMessageDialog(this,"Pin is incorrect please try again");
-         t1.setText("");
-         }
+        String buffer = (t1.getText());
+        if (l.set_index(Integer.parseInt(buffer))) {
+            survival_index = l.index;
+            System.out.println(survival_index);
+            MainPage m = new MainPage();
+            //this.dispose();
 
-    t1.getText();
+        } else {
+            JOptionPane.showMessageDialog(this, "Pin is incorrect please try again","Failed Login",JOptionPane.ERROR_MESSAGE);
+            t1.setText("");
+        }
+
+        t1.getText();
 
     }
 
@@ -160,37 +163,38 @@ public class Login extends JFrame implements ActionListener {
                 break;
             //for numbers
             case "0":
-                t1.setText(t1.getText()+0);
+                t1.setText(t1.getText() + 0);
                 break;
             case "1":
-                t1.setText(t1.getText()+1);
+                t1.setText(t1.getText() + 1);
                 break;
             case "2":
-                t1.setText(t1.getText()+2);
+                t1.setText(t1.getText() + 2);
                 break;
             case "3":
-                t1.setText(t1.getText()+3);
+                t1.setText(t1.getText() + 3);
                 break;
             case "4":
-                t1.setText(t1.getText()+4);
+                t1.setText(t1.getText() + 4);
                 break;
             case "5":
-                t1.setText(t1.getText()+5);
+                t1.setText(t1.getText() + 5);
                 break;
             case "6":
-                t1.setText(t1.getText()+6);
+                t1.setText(t1.getText() + 6);
                 break;
             case "7":
-                t1.setText(t1.getText()+7);
+                t1.setText(t1.getText() + 7);
                 break;
             case "8":
-                t1.setText(t1.getText()+8);
+                t1.setText(t1.getText() + 8);
                 break;
             case "9":
-                t1.setText(t1.getText()+9);
+                t1.setText(t1.getText() + 9);
                 break;
             default:
 
         }
     }
+
 }
