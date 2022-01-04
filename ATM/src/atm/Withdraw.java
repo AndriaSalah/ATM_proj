@@ -14,9 +14,9 @@ public class Withdraw extends JFrame implements ActionListener {
     Font f = new Font("SansSerif",Font.PLAIN,17);
     Font f2 = new Font("SansSerif",Font.PLAIN,34);
     CustomerInfo l = new CustomerInfo();
-    int index;
+
     public Withdraw ( ){
-        this.index = index ;
+
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
         this.setSize(555, 363);
@@ -34,7 +34,7 @@ public class Withdraw extends JFrame implements ActionListener {
         l1.setForeground(Color.white);
         l1.setFont(f);
         t1 = new JTextField();
-        t1.setText(String.valueOf(l.balance[index]));
+        t1.setText(String.valueOf(l.balance[l.index]));
         t1.setEditable(false);
         p1.add(l1);
         p1.add(t1);
@@ -95,8 +95,8 @@ public class Withdraw extends JFrame implements ActionListener {
         }
     }
     public void add(int num){
-        l.balance[index] -= num;
-        t1.setText(String.valueOf(l.balance[index]));
+        l.balance[l.index] -= num;
+        t1.setText(String.valueOf(l.balance[l.index]));
 
 
 

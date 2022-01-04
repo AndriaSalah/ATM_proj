@@ -36,7 +36,7 @@ public  class MainPage extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    JLabel l1 = new JLabel("National bank of Egypt services",SwingConstants.CENTER) ;
+    JLabel l1 = new JLabel("Welcome, "+l.holders[l.index],SwingConstants.CENTER) ;
     l1.setFont(f2);
     l1.setForeground(Color.WHITE);
     JPanel pb,p1,p2,p3,p4 ;
@@ -118,11 +118,13 @@ public  class MainPage extends JFrame implements ActionListener {
             Deposit d = new Deposit();
             break;
         case "BALANCE HISTORY":
-            //BalanceInfo b = new BalanceHistory();
+            BalanceHistory b = new BalanceHistory();
             //this.dispose();
+            break;
         case "ACCOUNT INFO":
-            //AccountInfo i = new AccountInfo();
+            Account_info i = new Account_info();
             //this.dispose();
+            break;
         case "WITHDRAW":
             Withdraw w = new Withdraw();
             break;
@@ -131,9 +133,9 @@ public  class MainPage extends JFrame implements ActionListener {
             //Fawry f = new Fawry();
             //this.dispose();
         case "CREDIT CARD":
-            //CreditCard c = new CreditCard();
+            CreditCard c = new CreditCard();
             //this.dispose();
-
+            break;
     }
 
     }
