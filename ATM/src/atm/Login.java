@@ -21,7 +21,7 @@ public class Login extends JFrame implements ActionListener {
 
     //frame stuff
     JPasswordField t1;
-    JButton b, b2, b3, b4;
+    JButton b, b2, b3, b4, delete;
     CustomerInfo l = new CustomerInfo();
     Border border = new LineBorder(Color.BLACK, 1, true);
 
@@ -67,7 +67,7 @@ public class Login extends JFrame implements ActionListener {
         t1 = new JPasswordField(2);
         //t1.setPreferredSize(new Dimension(125, 50));
         t1.setFont(new Font("sans", Font.PLAIN, 36));
-        t1.setEditable(false);
+        t1.setEditable(true);
         t1.setBorder(border);
         t1.addActionListener(this);
         p2.add(t1);
@@ -88,7 +88,13 @@ public class Login extends JFrame implements ActionListener {
             p3.add(b);
         }
 
-        //button zero
+        //button zero and delete
+        delete = new JButton("<");
+        delete.addActionListener(this);
+        delete.setPreferredSize(new Dimension(125, 35));
+        delete.setBorder(border);
+        delete.setBackground(new Color(91, 91, 91));
+        delete.setForeground(new Color(228, 228, 228));
         b4 = new JButton("0");
         b4.addActionListener(this);
         b4.setPreferredSize(new Dimension(125, 35));
@@ -98,6 +104,7 @@ public class Login extends JFrame implements ActionListener {
         p6 = new JPanel();
         p6.setBackground(new Color(60, 70, 92));
         p6.add(b4);
+        p6.add(delete);
 
         p.add(p3);
         p.add(p6);
@@ -159,37 +166,61 @@ public class Login extends JFrame implements ActionListener {
             //for numbers
             case "0":
                 t1.setText(t1.getText() + 0);
+                delete.setEnabled(true);
                 break;
             case "1":
                 t1.setText(t1.getText() + 1);
+                delete.setEnabled(true);
                 break;
             case "2":
                 t1.setText(t1.getText() + 2);
+                delete.setEnabled(true);
                 break;
             case "3":
                 t1.setText(t1.getText() + 3);
+                delete.setEnabled(true);
                 break;
             case "4":
                 t1.setText(t1.getText() + 4);
+                delete.setEnabled(true);
                 break;
             case "5":
                 t1.setText(t1.getText() + 5);
+                delete.setEnabled(true);
                 break;
             case "6":
                 t1.setText(t1.getText() + 6);
+                delete.setEnabled(true);
                 break;
             case "7":
                 t1.setText(t1.getText() + 7);
+                delete.setEnabled(true);
                 break;
             case "8":
                 t1.setText(t1.getText() + 8);
+                delete.setEnabled(true);
                 break;
             case "9":
                 t1.setText(t1.getText() + 9);
+                delete.setEnabled(true);
                 break;
-            default:
+
+            case "<":
+                if(!t1.getText().isEmpty() ){
+                String text = t1.getText();
+                text = text.substring(0,text.length()-1);
+                t1.setText(text);
+                }
+                else{JOptionPane.showMessageDialog(this, "Password field is already empty ");
+                delete.setEnabled(false);}
+                break;
+                default:
+            }
+
 
         }
-    }
+
 
 }
+
+

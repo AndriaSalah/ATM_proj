@@ -81,8 +81,9 @@ public class CreditCard extends JFrame implements ActionListener {
             switch (e.getActionCommand()){
 
                 case "Pay Now" :
-                    if(!check()) {
-                    add(Integer.parseInt(t2.getText()));
+
+                    if(checkowe()) {
+                        check(Integer.parseInt(t2.getText()));
                         JOptionPane.showMessageDialog(this, "money is deposited into your card successfully");
                         t2.setText("");}
                     else{ t2.setText("");}
@@ -96,17 +97,29 @@ public class CreditCard extends JFrame implements ActionListener {
                     break;
             }
         }
-        public void add(int num){
 
-             l.owe[l.index] -= num;
-             if ( l.owe[l.index] < 0){l.owe[l.index]=0 ;}
-            t1.setText(String.valueOf(l.owe[l.index]));
+        public void check(int num){
+            if (l.owe[l.index]-num < 0 ){
+                num -= l.owe[l.index];
+                l.owe[l.index] = 0 ;
+                JOptionPane.showMessageDialog(this, "Returning extra " + num + " cash that was deposited ");
+                 t1.setText(String.valueOf(l.owe[l.index]));
+                 t2.setText("");}
+            else{
+                l.owe[l.index] -= num;
+                t1.setText(String.valueOf(l.owe[l.index]));
+                t2.setText("");
+
+            }
         }
-        public boolean check(){
-            if (l.owe[l.index] == 0 )
-                JOptionPane.showMessageDialog(this,"This account doesnt currently owe anything");
-
+        public boolean checkowe(){
+            if (l.owe[l.index]== 0 ){
+             JOptionPane.showMessageDialog(this, "This account does not owe anything ");
+            t2.setText("");
             return false;
+            }
+            else
+                return true;
         }
 
     }

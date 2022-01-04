@@ -3,6 +3,8 @@ package atm;
 import com.sun.tools.javac.Main;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +19,7 @@ public class Deposit extends JFrame implements ActionListener {
     Color c = new Color(60, 70, 92);
     Font f = new Font("SansSerif", Font.PLAIN, 17);
     Font f2 = new Font("SansSerif", Font.PLAIN, 34);
+    Border border = new LineBorder(Color.BLACK, 2, false);
     CustomerInfo l = new CustomerInfo();
     int index;
 
@@ -34,6 +37,7 @@ public class Deposit extends JFrame implements ActionListener {
         //balance info panel
         p1 = new JPanel(new GridLayout(1, 2, 100, 100));
         p1.setBackground(c);
+        p1.setBorder(border);
         l1 = new JLabel("Available balance : ");
         l1.setForeground(Color.white);
         l1.setFont(f);
@@ -45,6 +49,7 @@ public class Deposit extends JFrame implements ActionListener {
         //deposit entry
         p2 = new JPanel(new GridLayout(1, 2, 100, 100));
         p2.setBackground(c);
+        p2.setBorder(border);
         l2 = new JLabel("Amount deposited : ");
         l2.setForeground(Color.white);
         l2.setFont(f);

@@ -82,9 +82,12 @@ public class Withdraw extends JFrame implements ActionListener {
         switch (e.getActionCommand()){
 
             case "Withdraw" :
-                add(Integer.parseInt(t2.getText()));
+                if (checkbalance()){
+                check(Integer.parseInt(t2.getText()));
                 JOptionPane.showMessageDialog(this,"money is withdrawn successfully");
-                t2.setText("");
+                t2.setText("");}
+                else {t2.setText("");}
+
                 break;
             case "Clear" :
                 t2.setText("");
@@ -94,13 +97,28 @@ public class Withdraw extends JFrame implements ActionListener {
                 break;
         }
     }
-    public void add(int num){
-        l.balance[l.index] -= num;
-        t1.setText(String.valueOf(l.balance[l.index]));
+    public void check(int num){
+        if (l.balance[l.index]-num < 0 ){
+            num -= l.balance[l.index];
+            l.balance[l.index] = 0;
+            JOptionPane.showMessageDialog(this, "couldn't withdraw this extra " + num + " in cash ");
+            t1.setText(String.valueOf(l.balance[l.index]));
+            t2.setText("");}
+        else{
+            l.balance[l.index] -= num;
+            t1.setText(String.valueOf(l.balance[l.index]));
+            t2.setText("");
 
-
-
-
+        }
+    }
+    public boolean checkbalance(){
+        if (l.balance[l.index]== 0 ){
+            JOptionPane.showMessageDialog(this, "Balance available is not enough to withdraw this amount ");
+            t2.setText("");
+            return false;
+        }
+        else
+            return true;
     }
 
 }

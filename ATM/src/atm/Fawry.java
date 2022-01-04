@@ -86,6 +86,8 @@ public class Fawry extends JFrame implements ActionListener {
         switch (e.getActionCommand()) {
             case "Recharge":
                 JOptionPane.showMessageDialog(this, "Recharge was completed successfully");
+                t1.setText("");
+                t2.setText("");
                 break;
             case "Cancel":
                 this.dispose();
