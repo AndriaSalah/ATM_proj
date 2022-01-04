@@ -15,13 +15,13 @@ public class Deposit extends JFrame implements ActionListener {
     JButton b1, b2, b3;
     JTextField t1, t2;
     JLabel l1, l2;
-    JPanel pb, p1, p2, p3, p4;
+    JPanel pb, p1, p2, p3;
     Color c = new Color(60, 70, 92);
     Font f = new Font("SansSerif", Font.PLAIN, 17);
     Font f2 = new Font("SansSerif", Font.PLAIN, 34);
     Border border = new LineBorder(Color.BLACK, 2, false);
     CustomerInfo l = new CustomerInfo();
-    int index;
+
 
     public Deposit() {
 
@@ -42,7 +42,7 @@ public class Deposit extends JFrame implements ActionListener {
         l1.setForeground(Color.white);
         l1.setFont(f);
         t1 = new JTextField();
-        t1.setText(String.valueOf(l.getBalance(index)));
+        t1.setText(String.valueOf(l.balance[l.index]));
         t1.setEditable(false);
         p1.add(l1);
         p1.add(t1);
@@ -106,8 +106,7 @@ public class Deposit extends JFrame implements ActionListener {
     }
 
     public void add(int num) {
-        int temp = l.balance[l.index] + num;
-        l.setBalance(temp, l.index);
+        l.balance[l.index] +=  num;
         t1.setText(String.valueOf(l.balance[l.index]));
 
     }

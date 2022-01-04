@@ -9,7 +9,7 @@ public class Withdraw extends JFrame implements ActionListener {
     JButton b1,b2,b3;
     JTextField t1,t2;
     JLabel l1,l2;
-    JPanel pb,p1,p2,p3,p4;
+    JPanel pb,p1,p2,p3;
     Color c =new Color(60, 70, 92);
     Font f = new Font("SansSerif",Font.PLAIN,17);
     Font f2 = new Font("SansSerif",Font.PLAIN,34);

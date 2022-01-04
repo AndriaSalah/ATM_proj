@@ -15,7 +15,7 @@ public class BalanceHistory extends JFrame implements ActionListener {
     JLabel l1, l2, l3, l4;
     JScrollPane sc = new JScrollPane();
     JPanel pb, p1, p2, p3, p4;
-    JButton b1;
+
     Border border = new LineBorder(new Color(190,192,203),1,false);
     // Border border2 = new LineBorder(Color.WHITE,1,false);
     public BalanceHistory() {

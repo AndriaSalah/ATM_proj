@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class Fawry extends JFrame implements ActionListener {
 
-    JPanel pb, p1, p2, p3, p4, p5;
+    JPanel pb, p1, p2;
     JLabel l1, l2, l3;
     JTextField t1, t2;
     JButton b1, b2;

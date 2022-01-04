@@ -31,8 +31,8 @@ public class MainPage extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // JLabel l1 = new JLabel("Welcome, "+l.holders[l.index],icon,SwingConstants.CENTER) ;
-        JLabel l1 = new JLabel("Welcome, " + l.holders[l.index], SwingConstants.CENTER);
+         JLabel l1 = new JLabel("Welcome, "+l.holders[l.index],icon,SwingConstants.CENTER) ;
+        //JLabel l1 = new JLabel("Welcome, " + l.holders[l.index], SwingConstants.CENTER);
         l1.setFont(f2);
         l1.setForeground(Color.WHITE);
         JPanel pb, p1, p2, p3, p4;
