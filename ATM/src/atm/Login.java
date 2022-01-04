@@ -67,7 +67,7 @@ public class Login extends JFrame implements ActionListener {
         t1 = new JPasswordField(2);
         //t1.setPreferredSize(new Dimension(125, 50));
         t1.setFont(new Font("sans", Font.PLAIN, 36));
-        t1.setEditable(true);
+        t1.setEditable(false);
         t1.setBorder(border);
         t1.addActionListener(this);
         p2.add(t1);
