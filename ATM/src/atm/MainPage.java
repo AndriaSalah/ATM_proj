@@ -10,24 +10,19 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.BrokenBarrierException;
 
+public class MainPage extends JFrame implements ActionListener {
 
-public  class MainPage extends JFrame implements ActionListener {
-
-    JButton balance_info,deposit,withdraw,accounts,pay_credit,fawry ;
-    Color c =new Color(60, 70, 92);
-    Dimension d = new Dimension(200,50);
-    Font f = new Font("SansSerif",Font.PLAIN,17);
-    Font f2 = new Font("SansSerif",Font.PLAIN,34);
+    JButton balance_info, deposit, withdraw, accounts, pay_credit, Fawry, Logout;
+    Dimension d = new Dimension(200, 50);
+    Color c = new Color(60, 70, 92);
+    Font f = new Font("SansSerif", Font.PLAIN, 17);
+    Font f2 = new Font("SansSerif", Font.PLAIN, 34);
     CustomerInfo l = new CustomerInfo();
-    //int index;
-    //int balance = l.balance[index];
-    //String holder= l.holders[index];
-    //String account_id=l.account_id[index];
-
+    ImageIcon icon = createImageIcon("image/download.png", "bank logo");
 
     public MainPage() {
-
 
         //frame specs
         this.setTitle("National Bank Of Egypt ATM");
@@ -36,74 +31,84 @@ public  class MainPage extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    JLabel l1 = new JLabel("Welcome, "+l.holders[l.index],SwingConstants.CENTER) ;
-    l1.setFont(f2);
-    l1.setForeground(Color.WHITE);
-    JPanel pb,p1,p2,p3,p4 ;
-    pb = new JPanel(new GridLayout(4,1,20,20));
-    pb.setBackground(c);
+        // JLabel l1 = new JLabel("Welcome, "+l.holders[l.index],icon,SwingConstants.CENTER) ;
+        JLabel l1 = new JLabel("Welcome, " + l.holders[l.index], SwingConstants.CENTER);
+        l1.setFont(f2);
+        l1.setForeground(Color.WHITE);
+        JPanel pb, p1, p2, p3, p4;
+        pb = new JPanel(new GridLayout(4, 1, 20, 20));
+        pb.setBackground(c);
 
-    //title
-    p1= new JPanel(new GridLayout(1,1,20,20));
-    p1.setBackground(new Color(2, 94, 2));
-    p1.setBorder(new EtchedBorder(3));
-    p1.add(l1,SwingConstants.CENTER);
+        //title
+        p1 = new JPanel(new GridLayout(1, 1, 20, 20));
+        p1.setBackground(new Color(2, 94, 2));
+        p1.setBorder(new EtchedBorder(3));
+        p1.add(l1, SwingConstants.CENTER);
 
-    //first 2 buttons
-    p2 = new JPanel(new BorderLayout());
-    p2.setBackground(c);
-    balance_info = new JButton("BALANCE HISTORY");
+        //first 2 buttons
+        p2 = new JPanel(new BorderLayout());
+        p2.setBackground(c);
+        balance_info = new JButton("BALANCE HISTORY");
         balance_info.setPreferredSize(d);
         balance_info.setFont(f);
         balance_info.setBackground(new Color(91, 91, 91));
         balance_info.setForeground(new Color(228, 228, 228));
         balance_info.addActionListener(this);
-    deposit = new JButton("DEPOSIT");
+        deposit = new JButton("DEPOSIT");
         deposit.setPreferredSize(d);
         deposit.setFont(f);
         deposit.setBackground(new Color(91, 91, 91));
         deposit.setForeground(new Color(228, 228, 228));
         deposit.addActionListener(this);
-    p2.add(balance_info,BorderLayout.EAST);
-    p2.add(deposit,BorderLayout.WEST);
+        p2.add(balance_info, BorderLayout.EAST);
+        p2.add(deposit, BorderLayout.WEST);
 
-    // second 2 buttons
-    p3= new JPanel(new BorderLayout());
-    p3.setBackground(c);
-    withdraw = new JButton("WITHDRAW");
+        // second 2 buttons
+        p3 = new JPanel(new BorderLayout());
+        p3.setBackground(c);
+        withdraw = new JButton("WITHDRAW");
         withdraw.setPreferredSize(d);
         withdraw.setFont(f);
         withdraw.setBackground(new Color(91, 91, 91));
         withdraw.setForeground(new Color(228, 228, 228));
         withdraw.addActionListener(this);
-    accounts = new JButton("ACCOUNT INFO");
+        accounts = new JButton("ACCOUNT INFO");
         accounts.setPreferredSize(d);
         accounts.setFont(f);
         accounts.setBackground(new Color(91, 91, 91));
         accounts.setForeground(new Color(228, 228, 228));
         accounts.addActionListener(this);
-    p3.add(withdraw,BorderLayout.EAST);
-    p3.add(accounts,BorderLayout.WEST);
+        p3.add(withdraw, BorderLayout.EAST);
+        p3.add(accounts, BorderLayout.WEST);
 
-    //third 2 buttons
-    p4 = new JPanel(new BorderLayout());
-    p4.setBackground(c);
-    pay_credit = new JButton("CREDIT CARD");
+        //third 2 buttons
+        p4 = new JPanel(new BorderLayout());
+        p4.setBackground(c);
+        pay_credit = new JButton("CREDIT CARD");
         pay_credit.setPreferredSize(d);
         pay_credit.setFont(f);
         pay_credit.setBackground(new Color(91, 91, 91));
         pay_credit.setForeground(new Color(228, 228, 228));
         pay_credit.addActionListener(this);
-    fawry = new JButton("FAWRY");
-        fawry.setPreferredSize(d);
-        fawry.setFont(f);
-        fawry.setBackground(new Color(91, 91, 91));
-        fawry.setForeground(new Color(228, 228, 228));
-        fawry.addActionListener(this);
-    p4.add(pay_credit,BorderLayout.EAST);
-    p4.add(fawry,BorderLayout.WEST);
+        Fawry = new JButton("FAWRY");
+        Fawry.setPreferredSize(d);
+        Fawry.setFont(f);
+        Fawry.setBackground(new Color(91, 91, 91));
+        Fawry.setForeground(new Color(228, 228, 228));
+        Fawry.addActionListener(this);
+        p4.add(pay_credit, BorderLayout.EAST);
+        p4.add(Fawry, BorderLayout.WEST);
 
-    //add to base
+        Logout = new JButton("Log Out");
+        Logout.setPreferredSize(d);
+        Logout.setFont(f);
+        Logout.setBackground(new Color(103, 0, 0));
+        Logout.setForeground(new Color(228, 228, 228));
+        Logout.addActionListener(this);
+        Logout.setPreferredSize(new Dimension(50, 50));
+
+        p4.add(Logout, BorderLayout.CENTER);
+        //add to base
         pb.add(p1);
         pb.add(p2);
         pb.add(p3);
@@ -113,31 +118,52 @@ public  class MainPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    switch (e.getActionCommand()){
-        case "DEPOSIT":
-            Deposit d = new Deposit();
-            break;
-        case "BALANCE HISTORY":
-            BalanceHistory b = new BalanceHistory();
-            //this.dispose();
-            break;
-        case "ACCOUNT INFO":
-            Account_info i = new Account_info();
-            //this.dispose();
-            break;
-        case "WITHDRAW":
-            Withdraw w = new Withdraw();
-            break;
-            //this.dispose();
-        case "FAWRY":
-            //Fawry f = new Fawry();
-            //this.dispose();
-        case "CREDIT CARD":
-            CreditCard c = new CreditCard();
-            //this.dispose();
-            break;
-    }
+        switch (e.getActionCommand()) {
+            case "DEPOSIT":
+                Deposit d = new Deposit();
+                break;
+
+            case "BALANCE HISTORY":
+                BalanceHistory b = new BalanceHistory();
+                break;
+
+            case "ACCOUNT INFO":
+                Account_info i = new Account_info();
+                break;
+
+            case "WITHDRAW":
+                Withdraw w = new Withdraw();
+                break;
+
+            case "FAWRY":
+                Fawry f = new Fawry();
+                break;
+
+            case "CREDIT CARD":
+                CreditCard c = new CreditCard();
+                break;
+
+            case "Log Out":
+                Login login = new Login();
+                this.dispose();
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Function not implemented yet");
+        }
 
     }
+
+    /**
+     * Returns an ImageIcon, or null if the path was invalid.
+     */
+    protected ImageIcon createImageIcon(String path, String description) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL, description);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
+
 }
-

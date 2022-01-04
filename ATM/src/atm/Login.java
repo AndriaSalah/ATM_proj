@@ -11,18 +11,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder.*;
 
 public class Login extends JFrame implements ActionListener {
+
     //frame stuff
     JPasswordField t1;
     JButton b, b2, b3, b4;
     CustomerInfo l = new CustomerInfo();
-    int survival_index;
+    Border border = new LineBorder(Color.BLACK, 1, true);
 
     public Login() {
+        this.setTitle("National Bank Of Egypt ATM");
+        this.setVisible(true);
+        this.setSize(400, 700);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //panel init
         JPanel p = new JPanel();
@@ -32,8 +40,6 @@ public class Login extends JFrame implements ActionListener {
         p.setLayout(new GridLayout(6, 1));
 
         //component init
-
-
         JLabel l1, l2;
 
         //panel 1 fr labels
@@ -50,12 +56,10 @@ public class Login extends JFrame implements ActionListener {
         l1.setBorder(new EtchedBorder(1));
         l2.setFont(new Font("Times", Font.PLAIN, 15));
 
-
         p1.add(l1);
         p1.add(l2);
         p.add(p1);
         //frame1.add(p);
-
 
         //panel 2 for text field
         p2 = new JPanel();
@@ -64,6 +68,7 @@ public class Login extends JFrame implements ActionListener {
         //t1.setPreferredSize(new Dimension(125, 50));
         t1.setFont(new Font("sans", Font.PLAIN, 36));
         t1.setEditable(false);
+        t1.setBorder(border);
         t1.addActionListener(this);
         p2.add(t1);
         p.add(p2);
@@ -76,7 +81,7 @@ public class Login extends JFrame implements ActionListener {
         p3.setSize(400, 400);
         for (int i = 1; i < 10; i++) {
             b = new JButton(String.valueOf(i));
-            b.setBorder(new SoftBevelBorder(1));
+            b.setBorder(border);
             b.setBackground(new Color(91, 91, 91));
             b.setForeground(new Color(228, 228, 228));
             b.addActionListener(this);
@@ -87,7 +92,7 @@ public class Login extends JFrame implements ActionListener {
         b4 = new JButton("0");
         b4.addActionListener(this);
         b4.setPreferredSize(new Dimension(125, 35));
-        b4.setBorder(new SoftBevelBorder(1));
+        b4.setBorder(border);
         b4.setBackground(new Color(91, 91, 91));
         b4.setForeground(new Color(228, 228, 228));
         p6 = new JPanel();
@@ -97,9 +102,7 @@ public class Login extends JFrame implements ActionListener {
         p.add(p3);
         p.add(p6);
 
-
         // panel 4 for login and exit buttons
-
         p5 = new JPanel();
         p5.setBackground(new Color(60, 70, 92));
         p.add(p5);
@@ -108,22 +111,20 @@ public class Login extends JFrame implements ActionListener {
         p4.setSize(400, 400);
 
         // Login button / button 2 customization
-
         b2 = new JButton("Login");
         b2.addActionListener(this);
         b2.setPreferredSize(new Dimension(150, 50));
         b2.setBackground(new Color(0, 103, 0));
         b2.setForeground(Color.white);
-        b2.setBorder(new EtchedBorder(1));
+        b2.setBorder(border);
 
         // EXIT button / button 3 customization
-
         b3 = new JButton("Exit");
         b3.addActionListener(this);
         b3.setPreferredSize(new Dimension(150, 50));
         b3.setBackground(new Color(103, 0, 0));
         b3.setForeground(Color.white);
-        b3.setBorder(new EtchedBorder(1));
+        b3.setBorder(border);
         p4.add(b2);
         p4.add(b3);
         p.add(p4);
@@ -134,17 +135,13 @@ public class Login extends JFrame implements ActionListener {
 
         String buffer = (t1.getText());
         if (l.set_index(Integer.parseInt(buffer))) {
-            survival_index = l.index;
-            System.out.println(survival_index);
             MainPage m = new MainPage();
-            //this.dispose();
+            this.dispose();
 
         } else {
-            JOptionPane.showMessageDialog(this, "Pin is incorrect please try again","Failed Login",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Pin is incorrect please try again", "Failed Login", JOptionPane.ERROR_MESSAGE);
             t1.setText("");
         }
-
-        t1.getText();
 
     }
 
@@ -154,8 +151,6 @@ public class Login extends JFrame implements ActionListener {
 
             case "Login":
                 verify();
-                //MainPage m = new MainPage();
-                //this.dispose();
                 break;
             case "Exit":
 
