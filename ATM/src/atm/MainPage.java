@@ -10,6 +10,8 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.BrokenBarrierException;
 
 public class MainPage extends JFrame implements ActionListener {
@@ -19,7 +21,7 @@ public class MainPage extends JFrame implements ActionListener {
     Color c = new Color(60, 70, 92);
     Font f = new Font("SansSerif", Font.PLAIN, 17);
     Font f2 = new Font("SansSerif", Font.PLAIN, 34);
-    CustomerInfo l = new CustomerInfo();
+    CustomerData p = new CustomerData();
     ImageIcon icon = createImageIcon("image/download.png", "bank logo");
 
     public MainPage() {
@@ -31,7 +33,7 @@ public class MainPage extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-         JLabel l1 = new JLabel("Welcome, "+l.holders[l.index],icon,SwingConstants.CENTER) ;
+         JLabel l1 = new JLabel("Welcome, "+p.holders,icon,SwingConstants.CENTER) ;
         //JLabel l1 = new JLabel("Welcome, " + l.holders[l.index], SwingConstants.CENTER);
         l1.setFont(f2);
         l1.setForeground(Color.WHITE);
@@ -145,6 +147,7 @@ public class MainPage extends JFrame implements ActionListener {
 
             case "Log Out":
                 Login login = new Login();
+                p.flush();
                 this.dispose();
                 break;
             default:
@@ -165,5 +168,7 @@ public class MainPage extends JFrame implements ActionListener {
             return null;
         }
     }
+
+
 
 }

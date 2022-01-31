@@ -1,0 +1,8 @@
+amazon
+600
+souq
+500
+supermarket
+10
+mobileshop
+60

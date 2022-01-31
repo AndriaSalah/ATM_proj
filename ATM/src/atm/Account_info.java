@@ -12,7 +12,8 @@ public class Account_info extends JFrame {
 
     JPanel pb, p1, p2, p3, p4, p5;
     JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10;
-    CustomerInfo l = new CustomerInfo();
+
+    CustomerData p = new CustomerData();
     Font f = new Font("SansSerif", Font.BOLD, 20);
     Font f2 = new Font("SansSerif", Font.ITALIC, 20);
     Border border = new LineBorder(Color.BLACK, 2, false);
@@ -32,7 +33,7 @@ public class Account_info extends JFrame {
         l1 = new JLabel("Name          : ");
         l1.setFont(f);
         l1.setForeground(new Color(228, 228, 228));
-        l2 = new JLabel(l.holders[l.index], SwingConstants.CENTER);
+        l2 = new JLabel(p.holders, SwingConstants.CENTER);
         l2.setFont(f2);
         l2.setForeground(new Color(252, 194, 0));
         p1.add(l1, BorderLayout.WEST);
@@ -43,7 +44,7 @@ public class Account_info extends JFrame {
         l3 = new JLabel("Mobile number : ");
         l3.setFont(f);
         l3.setForeground(new Color(228, 228, 228));
-        l4 = new JLabel(l.mobile[l.index], SwingConstants.CENTER);
+        l4 = new JLabel(p.mobile, SwingConstants.CENTER);
         l4.setFont(f2);
         l4.setForeground(new Color(252, 194, 0));
         p2.add(l3, BorderLayout.WEST);
@@ -54,7 +55,7 @@ public class Account_info extends JFrame {
         l5 = new JLabel("AccountID      : ");
         l5.setFont(f);
         l5.setForeground(new Color(228, 228, 228));
-        l6 = new JLabel(l.account_id[l.index], SwingConstants.CENTER);
+        l6 = new JLabel(p.account_id, SwingConstants.CENTER);
         l6.setFont(f2);
         l6.setForeground(new Color(252, 194, 0));
         p3.add(l5, BorderLayout.WEST);
@@ -65,7 +66,7 @@ public class Account_info extends JFrame {
         l7 = new JLabel("Card Number    : ");
         l7.setFont(f);
         l7.setForeground(new Color(228, 228, 228));
-        l8 = new JLabel(l.cards[l.index], SwingConstants.CENTER);
+        l8 = new JLabel(p.cards, SwingConstants.CENTER);
         l8.setFont(f2);
         l8.setForeground(new Color(252, 194, 0));
         p4.add(l7, BorderLayout.WEST);
@@ -76,7 +77,7 @@ public class Account_info extends JFrame {
         l9 = new JLabel("Balance        : ");
         l9.setFont(f);
         l9.setForeground(new Color(228, 228, 228));
-        l10 = new JLabel(String.valueOf(l.balance[l.index]), SwingConstants.CENTER);
+        l10 = new JLabel(String.valueOf(p.balance), SwingConstants.CENTER);
         l10.setFont(f2);
         l10.setForeground(new Color(252, 194, 0));
         p5.add(l9, BorderLayout.WEST);

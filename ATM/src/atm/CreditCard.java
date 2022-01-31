@@ -14,7 +14,8 @@ public class CreditCard extends JFrame implements ActionListener {
         Color c =new Color(60, 70, 92);
         Font f = new Font("SansSerif",Font.PLAIN,17);
         Font f2 = new Font("SansSerif",Font.PLAIN,34);
-        CustomerInfo l = new CustomerInfo();
+
+        CustomerData p = new CustomerData();
         public CreditCard (){
             this.setTitle("National Bank Of Egypt ATM");
             this.setVisible(true);
@@ -33,7 +34,7 @@ public class CreditCard extends JFrame implements ActionListener {
             l1.setForeground(Color.white);
             l1.setFont(f);
             t1 = new JTextField();
-            t1.setText(String.valueOf(l.owe[l.index]));
+            t1.setText(String.valueOf(p.owe));
             t1.setEditable(false);
             p1.add(l1);
             p1.add(t1);
@@ -85,7 +86,10 @@ public class CreditCard extends JFrame implements ActionListener {
                     if(checkowe()) {
                         check(Integer.parseInt(t2.getText()));
                         JOptionPane.showMessageDialog(this, "money is deposited into your card successfully");
-                        t2.setText("");}
+                        p.place.add("Credit payment");
+                        t2.setText("");
+
+                    }
                     else{ t2.setText("");}
 
                     break;
@@ -99,21 +103,23 @@ public class CreditCard extends JFrame implements ActionListener {
         }
 
         public void check(int num){
-            if (l.owe[l.index]-num < 0 ){
-                num -= l.owe[l.index];
-                l.owe[l.index] = 0 ;
+            if (p.owe-num < 0 ){
+                p.price.add(p.owe);
+                num -= p.owe;
+                p.owe = 0 ;
                 JOptionPane.showMessageDialog(this, "Returning extra " + num + " cash that was deposited ");
-                 t1.setText(String.valueOf(l.owe[l.index]));
+                 t1.setText(String.valueOf(p.owe));
                  t2.setText("");}
             else{
-                l.owe[l.index] -= num;
-                t1.setText(String.valueOf(l.owe[l.index]));
+                p.owe -= num;
+                p.price.add(num);
+                t1.setText(String.valueOf(p.owe));
                 t2.setText("");
 
             }
         }
         public boolean checkowe(){
-            if (l.owe[l.index]== 0 ){
+            if (p.owe == 0 ){
              JOptionPane.showMessageDialog(this, "This account does not owe anything ");
             t2.setText("");
             return false;

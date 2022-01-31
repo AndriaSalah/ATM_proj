@@ -22,7 +22,8 @@ public class Login extends JFrame implements ActionListener {
     //frame stuff
     JPasswordField t1;
     JButton b, b2, b3, b4, delete;
-    CustomerInfo l = new CustomerInfo();
+
+    CustomerData p = new CustomerData();
     Border border = new LineBorder(Color.BLACK, 1, true);
 
     public Login() {
@@ -141,7 +142,16 @@ public class Login extends JFrame implements ActionListener {
     public void verify() {
 
         String buffer = (t1.getText());
-        if (l.set_index(Integer.parseInt(buffer))) {
+//        if (l.set_index(buffer)) {
+//            MainPage m = new MainPage();
+//            this.dispose();
+//
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Pin is incorrect please try again", "Failed Login", JOptionPane.ERROR_MESSAGE);
+//            t1.setText("");
+//        }
+
+        if (p.get_data(buffer)) {
             MainPage m = new MainPage();
             this.dispose();
 

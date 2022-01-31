@@ -20,7 +20,8 @@ public class Deposit extends JFrame implements ActionListener {
     Font f = new Font("SansSerif", Font.PLAIN, 17);
     Font f2 = new Font("SansSerif", Font.PLAIN, 34);
     Border border = new LineBorder(Color.BLACK, 2, false);
-    CustomerInfo l = new CustomerInfo();
+
+    CustomerData p = new CustomerData();
 
 
     public Deposit() {
@@ -42,7 +43,7 @@ public class Deposit extends JFrame implements ActionListener {
         l1.setForeground(Color.white);
         l1.setFont(f);
         t1 = new JTextField();
-        t1.setText(String.valueOf(l.balance[l.index]));
+        t1.setText(String.valueOf(p.balance));
         t1.setEditable(false);
         p1.add(l1);
         p1.add(t1);
@@ -94,6 +95,7 @@ public class Deposit extends JFrame implements ActionListener {
             case "Deposit":
                 add(Integer.parseInt(t2.getText()));
                 JOptionPane.showMessageDialog(this, "money is deposited successfully");
+                p.place.add("Deposit");
                 t2.setText("");
                 break;
             case "Clear":
@@ -106,8 +108,9 @@ public class Deposit extends JFrame implements ActionListener {
     }
 
     public void add(int num) {
-        l.balance[l.index] +=  num;
-        t1.setText(String.valueOf(l.balance[l.index]));
+        p.balance +=  num;
+        p.price.add(num);
+        t1.setText(String.valueOf(p.balance));
 
     }
 

@@ -13,7 +13,7 @@ public class Fawry extends JFrame implements ActionListener {
     JLabel l1, l2, l3;
     JTextField t1, t2;
     JButton b1, b2;
-    CustomerInfo l = new CustomerInfo();
+
     Font f = new Font("SansSerif", Font.BOLD, 10);
     Font f2 = new Font("SansSerif", Font.ITALIC, 20);
     Border border = new LineBorder(Color.BLACK, 2, false);
@@ -25,7 +25,7 @@ public class Fawry extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setSize(333, 395);
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        this.setResizable(true);
         pb = new JPanel(new GridLayout(3, 1));
         pb.setBackground(c);
         l1 = new JLabel(icon);

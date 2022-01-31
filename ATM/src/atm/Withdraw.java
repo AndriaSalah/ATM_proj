@@ -13,7 +13,8 @@ public class Withdraw extends JFrame implements ActionListener {
     Color c =new Color(60, 70, 92);
     Font f = new Font("SansSerif",Font.PLAIN,17);
     Font f2 = new Font("SansSerif",Font.PLAIN,34);
-    CustomerInfo l = new CustomerInfo();
+
+    CustomerData p = new CustomerData();
 
     public Withdraw ( ){
 
@@ -34,7 +35,7 @@ public class Withdraw extends JFrame implements ActionListener {
         l1.setForeground(Color.white);
         l1.setFont(f);
         t1 = new JTextField();
-        t1.setText(String.valueOf(l.balance[l.index]));
+        t1.setText(String.valueOf(p.balance));
         t1.setEditable(false);
         p1.add(l1);
         p1.add(t1);
@@ -85,7 +86,9 @@ public class Withdraw extends JFrame implements ActionListener {
                 if (checkbalance()){
                 check(Integer.parseInt(t2.getText()));
                 JOptionPane.showMessageDialog(this,"money is withdrawn successfully");
-                t2.setText("");}
+                t2.setText("");
+                p.place.add("withdraw");
+                }
                 else {t2.setText("");}
 
                 break;
@@ -98,21 +101,24 @@ public class Withdraw extends JFrame implements ActionListener {
         }
     }
     public void check(int num){
-        if (l.balance[l.index]-num < 0 ){
-            num -= l.balance[l.index];
-            l.balance[l.index] = 0;
+        if (p.balance-num < 0 ){
+            num -= p.balance;
+            p.balance = 0;
             JOptionPane.showMessageDialog(this, "couldn't withdraw this extra " + num + " in cash ");
-            t1.setText(String.valueOf(l.balance[l.index]));
-            t2.setText("");}
+            t1.setText(String.valueOf(p.balance));
+            t2.setText("");
+            p.price.add(p.balance);
+        }
         else{
-            l.balance[l.index] -= num;
-            t1.setText(String.valueOf(l.balance[l.index]));
+            p.balance -= num;
+            p.price.add(num);
+            t1.setText(String.valueOf(p.balance));
             t2.setText("");
 
         }
     }
     public boolean checkbalance(){
-        if (l.balance[l.index]== 0 ){
+        if (p.balance == 0 ){
             JOptionPane.showMessageDialog(this, "Balance available is not enough to withdraw this amount ");
             t2.setText("");
             return false;
