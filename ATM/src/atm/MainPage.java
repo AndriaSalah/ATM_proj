@@ -10,6 +10,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.BrokenBarrierException;
@@ -147,7 +148,7 @@ public class MainPage extends JFrame implements ActionListener {
 
             case "Log Out":
                 Login login = new Login();
-                p.flush();
+                p.flushHist();
                 this.dispose();
                 break;
             default:

@@ -77,7 +77,7 @@ static ArrayList<Object> place = new ArrayList<>();
         }
 
     }
-    public void flush(){
+    public static void flush(){
         try {
             System.out.println(num);
            PrintWriter fw = new PrintWriter("Data/"+num+".txt");
@@ -96,11 +96,17 @@ static ArrayList<Object> place = new ArrayList<>();
                 //}
             }
             h.close();
-            place.removeAll(place);
-            price.removeAll(price);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
+
+
+        }
+    public static void flushHist(){
+        place.removeAll(place);
+        price.removeAll(price);
 
     }
 }

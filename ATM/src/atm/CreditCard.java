@@ -88,7 +88,7 @@ public class CreditCard extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(this, "money is deposited into your card successfully");
                         p.place.add("Credit payment");
                         t2.setText("");
-
+                        p.flush();
                     }
                     else{ t2.setText("");}
 

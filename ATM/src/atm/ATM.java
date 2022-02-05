@@ -19,6 +19,7 @@ public class ATM {
   * @param args the command line arguments
   */
  public static void main(String[] args) {
+  CustomerData p = new CustomerData();
   Login frame1 = new Login();
   frame1.setTitle("National Bank Of Egypt ATM");
   frame1.setVisible(true);

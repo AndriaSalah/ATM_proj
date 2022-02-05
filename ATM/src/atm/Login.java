@@ -21,7 +21,7 @@ public class Login extends JFrame implements ActionListener {
 
     //frame stuff
     JPasswordField t1;
-    JButton b, b2, b3, b4, delete;
+    JButton b, b2, b3, b4, delete,newacc;
 
     CustomerData p = new CustomerData();
     Border border = new LineBorder(Color.BLACK, 1, true);
@@ -80,6 +80,8 @@ public class Login extends JFrame implements ActionListener {
         p3.setBackground(new Color(60, 70, 92));
         p3.setLayout(new GridLayout(0, 3, 5, 5));
         p3.setSize(400, 400);
+
+        //for loop to make 1-9 buttons
         for (int i = 1; i < 10; i++) {
             b = new JButton(String.valueOf(i));
             b.setBorder(border);
@@ -121,7 +123,7 @@ public class Login extends JFrame implements ActionListener {
         // Login button / button 2 customization
         b2 = new JButton("Login");
         b2.addActionListener(this);
-        b2.setPreferredSize(new Dimension(150, 50));
+        b2.setPreferredSize(new Dimension(100, 50));
         b2.setBackground(new Color(0, 103, 0));
         b2.setForeground(Color.white);
         b2.setBorder(border);
@@ -129,12 +131,22 @@ public class Login extends JFrame implements ActionListener {
         // EXIT button / button 3 customization
         b3 = new JButton("Exit");
         b3.addActionListener(this);
-        b3.setPreferredSize(new Dimension(150, 50));
+        b3.setPreferredSize(new Dimension(100, 50));
         b3.setBackground(new Color(103, 0, 0));
         b3.setForeground(Color.white);
         b3.setBorder(border);
+
+        // Create new account button
+        newacc = new JButton("Sign-up");
+        newacc.addActionListener(this);
+        newacc.setPreferredSize(new Dimension (100,50));
+        newacc.setBackground(new Color(0,103,0));
+        newacc.setForeground(Color.white);
+        newacc.setBorder(border);
+
         p4.add(b2);
         p4.add(b3);
+        p4.add(newacc);
         p.add(p4);
         this.add(p);
     }
@@ -224,6 +236,9 @@ public class Login extends JFrame implements ActionListener {
                 else{JOptionPane.showMessageDialog(this, "Password field is already empty ");
                 delete.setEnabled(false);}
                 break;
+
+            case "Sign-up":
+                SignUp s = new SignUp();
                 default:
             }
 

@@ -88,6 +88,7 @@ public class Withdraw extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this,"money is withdrawn successfully");
                 t2.setText("");
                 p.place.add("withdraw");
+                p.flush();
                 }
                 else {t2.setText("");}
 
