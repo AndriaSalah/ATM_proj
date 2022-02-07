@@ -1,6 +1,0 @@
-withdarw
-500
-withdraw
-800
-bank_wire
-4200

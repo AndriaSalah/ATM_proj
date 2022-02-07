@@ -26,6 +26,9 @@ public class ATM {
   frame1.setSize(400, 700);
   frame1.setLocationRelativeTo(null);
   frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//  CreditCard c =  new CreditCard();
+//  c.setVisible(true);
+//  c.setSize(555,363);
 
 
  }

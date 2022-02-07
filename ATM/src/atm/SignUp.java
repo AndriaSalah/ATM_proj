@@ -52,14 +52,14 @@ public class SignUp extends JFrame implements ActionListener {
         p2 = new JPanel(new FlowLayout());
         p2.setBackground(new Color(60,70,92));
         b1 = new JButton("Sign-Up");
-        b1.setPreferredSize(new Dimension(150,80));
+        b1.setPreferredSize(new Dimension(150,60));
         b1.setBackground(new Color(0, 103, 0));
         b1.setForeground(Color.white);
         b1.addActionListener(this);
         b2 = new JButton("Cancel");
         b2.setBackground(new Color(103, 0, 0));
         b2.setForeground(Color.white);
-        b2.setPreferredSize(new Dimension(150,80));
+        b2.setPreferredSize(new Dimension(150,60));
         b2.addActionListener(this);
         p2.add(b1);
         p2.add(b2);
@@ -74,7 +74,7 @@ public class SignUp extends JFrame implements ActionListener {
 
         String Chars = "abcdefghijklmnopqrstuvwxyz123456789";
 
-      //  do {
+        do {
             while (sb.length() < 9) {
                 int randomint = rnd.nextInt(Chars.length());
                 char in = Chars.charAt(randomint);
@@ -82,10 +82,10 @@ public class SignUp extends JFrame implements ActionListener {
             }
             account_number = sb.toString();
         }
-      //  while (!randcheck());
+        while (!randcheck());
 
 
-  //  }
+    }
 
     public boolean randcheck() {
         ArrayList<String> temp = new ArrayList<>();
@@ -96,9 +96,10 @@ public class SignUp extends JFrame implements ActionListener {
             }
 
             for (int i = 0; i < temp.size(); i++) {
-                if (account_number.equals(temp.get(i))) ;
-                sb.setLength(0);
-                return false;
+                if (account_number.equals(temp.get(i))) {
+                    sb.setLength(0);
+                    return false;
+                }
             }
             in.close();
             temp.removeAll(temp);
@@ -111,17 +112,20 @@ public class SignUp extends JFrame implements ActionListener {
 
     public void genCardnum() {
         try {
-           // int i = 0;
+            int i = 0;
             Scanner in = new Scanner(new FileReader("Data/allcards.txt"));
             ArrayList<String> temp = new ArrayList();
             while (in.hasNextLine()) {
                 temp.add(in.nextLine());
             }
-            //do {
-                card_number = (int) ((Math.random() * 100000000) + 999999999);
-                //i++;
-            //}
-           // while (!Integer.toString(card_number).equals(temp.get(i-1)) && i < temp.size());
+            if (temp.size() > 0 ) {
+                do {
+                    card_number = (int) ((Math.random() * 100000000) + 999999999);
+                    i++;
+                }
+                while (Integer.toString(card_number).equals(temp.get(i-1)) && i < temp.size());
+            }
+            else  card_number = (int) ((Math.random() * 100000000) + 999999999);
 
 
 
@@ -133,19 +137,19 @@ public class SignUp extends JFrame implements ActionListener {
 
     public void flush(){
         try {
-            PrintWriter f1 = new PrintWriter(new FileWriter( "Data/AllAccounts.txt"),true);
+            PrintWriter f1 = new PrintWriter(new FileWriter( "Data/AllAccounts.txt",true));
             f1.println(account_number);
             f1.close();
-            PrintWriter f2 = new PrintWriter(new FileWriter( "Data/allcards"),true);
+            PrintWriter f2 = new PrintWriter(new FileWriter( "Data/allcards.txt",true));
             f2.println(card_number);
             f2.close();
             PrintWriter f3 = new PrintWriter( "Data/"+pin+".txt");
             f3.println(name);
-            f3.println(0);
+            f3.println(300000);
             f3.println(account_number);
             f3.println(card_number);
             f3.println(mobile);
-            f3.println(0);
+            f3.println(30000);
             f3.close();
             PrintWriter f4 = new PrintWriter( "Data/"+pin+".history.txt");
             f4.close();
