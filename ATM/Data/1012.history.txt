@@ -1,6 +1,0 @@
-withdraw
-300000
-Deposit
-30000000
-Internal Credit payment
-30000
