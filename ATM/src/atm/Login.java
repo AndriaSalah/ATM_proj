@@ -5,17 +5,14 @@
  */
 package atm;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder.*;
 
 public class Login extends JFrame implements ActionListener {
 
@@ -27,12 +24,27 @@ public class Login extends JFrame implements ActionListener {
     Border border = new LineBorder(Color.BLACK, 1, true);
 
     public Login() {
+        //change how the ui components will look like
+        FlatDarkLaf.setup();
+        UIManager.put( "Button.arc", 200 );
+        UIManager.put( "Component.arc", 200 );
+        UIManager.put( "ProgressBar.arc", 200 );
+        UIManager.put( "TextComponent.arc", 200 );
+        // change the color of the title bar
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        this.getRootPane().putClientProperty("JRootPane.titleBarBackground", new Color(0, 103, 0));
+        this.getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.white);
+
+        //sets a title that would be shown in the title bar
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
         this.setSize(400, 700);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //base panel that will have all the other panels added to it
+        //basically we divide our design into a series of panels that will have some specific components as some times
+        //a single panel with single design won't fulfill the design we want it to have
         //panel init
         JPanel p = new JPanel();
         p.setBackground(new Color(60, 70, 92));
@@ -54,26 +66,25 @@ public class Login extends JFrame implements ActionListener {
         l2.setForeground(Color.white);
         l1.setOpaque(true);
         l1.setBackground(new Color(0, 103, 0));
-        l1.setBorder(new EtchedBorder(1));
         l2.setFont(new Font("Times", Font.PLAIN, 15));
 
         p1.add(l1);
         p1.add(l2);
         p.add(p1);
-        //frame1.add(p);
+        ;
 
         //panel 2 for text field
         p2 = new JPanel();
         p2.setBackground(new Color(60, 70, 92));
         t1 = new JPasswordField(2);
-        //t1.setPreferredSize(new Dimension(125, 50));
+
         t1.setFont(new Font("sans", Font.PLAIN, 36));
         t1.setEditable(false);
-        t1.setBorder(border);
+
         t1.addActionListener(this);
         p2.add(t1);
         p.add(p2);
-        //frame1.add(p);
+
 
         //panel3 for buttons
         p3 = new JPanel();
@@ -84,7 +95,7 @@ public class Login extends JFrame implements ActionListener {
         //for loop to make 1-9 buttons
         for (int i = 1; i < 10; i++) {
             b = new JButton(String.valueOf(i));
-            b.setBorder(border);
+           // b.setBorder(border);
             b.setBackground(new Color(91, 91, 91));
             b.setForeground(new Color(228, 228, 228));
             b.addActionListener(this);
@@ -95,13 +106,13 @@ public class Login extends JFrame implements ActionListener {
         delete = new JButton("<");
         delete.addActionListener(this);
         delete.setPreferredSize(new Dimension(125, 35));
-        delete.setBorder(border);
+
         delete.setBackground(new Color(91, 91, 91));
         delete.setForeground(new Color(228, 228, 228));
         b4 = new JButton("0");
         b4.addActionListener(this);
         b4.setPreferredSize(new Dimension(125, 35));
-        b4.setBorder(border);
+
         b4.setBackground(new Color(91, 91, 91));
         b4.setForeground(new Color(228, 228, 228));
         p6 = new JPanel();
@@ -126,7 +137,7 @@ public class Login extends JFrame implements ActionListener {
         b2.setPreferredSize(new Dimension(100, 50));
         b2.setBackground(new Color(0, 103, 0));
         b2.setForeground(Color.white);
-        b2.setBorder(border);
+
 
         // EXIT button / button 3 customization
         b3 = new JButton("Exit");
@@ -134,7 +145,7 @@ public class Login extends JFrame implements ActionListener {
         b3.setPreferredSize(new Dimension(100, 50));
         b3.setBackground(new Color(103, 0, 0));
         b3.setForeground(Color.white);
-        b3.setBorder(border);
+
 
         // Create new account button
         newacc = new JButton("Sign-up");
@@ -142,7 +153,7 @@ public class Login extends JFrame implements ActionListener {
         newacc.setPreferredSize(new Dimension (100,50));
         newacc.setBackground(new Color(0,103,0));
         newacc.setForeground(Color.white);
-        newacc.setBorder(border);
+
 
         p4.add(b2);
         p4.add(b3);
@@ -154,15 +165,6 @@ public class Login extends JFrame implements ActionListener {
     public void verify() {
 
         String buffer = (t1.getText());
-//        if (l.set_index(buffer)) {
-//            MainPage m = new MainPage();
-//            this.dispose();
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Pin is incorrect please try again", "Failed Login", JOptionPane.ERROR_MESSAGE);
-//            t1.setText("");
-//        }
-
         if (p.get_data(buffer)) {
             MainPage m = new MainPage();
             this.dispose();

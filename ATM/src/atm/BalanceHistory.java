@@ -1,9 +1,11 @@
 package atm;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+
 import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +24,12 @@ public class BalanceHistory extends JFrame implements ActionListener {
     JTable T1 = new JTable(model);
     Border border = new LineBorder(new Color(190,192,203),1,false);
     public BalanceHistory() {
+        FlatDarkLaf.setup();
+        UIManager.put( "Button.arc", 20 );
+        UIManager.put( "Component.arc", 20 );
+        UIManager.put( "ProgressBar.arc", 20 );
+        UIManager.put( "TextComponent.arc", 20 );
+        
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
         this.setSize(755, 463);

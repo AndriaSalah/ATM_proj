@@ -1,6 +1,6 @@
 package atm;
 
-import com.sun.tools.javac.Main;
+import com.formdev.flatlaf.FlatDarkLaf;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -8,7 +8,6 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static atm.CustomerInfo.*;
 
 public class Deposit extends JFrame implements ActionListener {
 
@@ -25,7 +24,12 @@ public class Deposit extends JFrame implements ActionListener {
 
 
     public Deposit() {
-
+        FlatDarkLaf.setup();
+        UIManager.put( "Button.arc", 20 );
+        UIManager.put( "Component.arc", 20 );
+        UIManager.put( "ProgressBar.arc", 20 );
+        UIManager.put( "TextComponent.arc", 20 );
+        
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
         this.setSize(555, 363);
@@ -38,7 +42,7 @@ public class Deposit extends JFrame implements ActionListener {
         //balance info panel
         p1 = new JPanel(new GridLayout(1, 2, 100, 100));
         p1.setBackground(c);
-        p1.setBorder(border);
+       
         l1 = new JLabel("Available balance : ");
         l1.setForeground(Color.white);
         l1.setFont(f);
@@ -47,10 +51,11 @@ public class Deposit extends JFrame implements ActionListener {
         t1.setEditable(false);
         p1.add(l1);
         p1.add(t1);
+        
         //deposit entry
         p2 = new JPanel(new GridLayout(1, 2, 100, 100));
         p2.setBackground(c);
-        p2.setBorder(border);
+      
         l2 = new JLabel("Amount deposited : ");
         l2.setForeground(Color.white);
         l2.setFont(f);

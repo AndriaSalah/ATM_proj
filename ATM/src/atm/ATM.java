@@ -6,11 +6,9 @@
 package atm;
 
 
-import java.awt.*;
+import com.formdev.flatlaf.FlatDarkLaf;
+
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.SoftBevelBorder;
 
 
 public class ATM {
@@ -19,17 +17,18 @@ public class ATM {
   * @param args the command line arguments
   */
  public static void main(String[] args) {
-  CustomerData p = new CustomerData();
-  Login frame1 = new Login();
-  frame1.setTitle("National Bank Of Egypt ATM");
-  frame1.setVisible(true);
-  frame1.setSize(400, 700);
-  frame1.setLocationRelativeTo(null);
-  frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//  CreditCard c =  new CreditCard();
-//  c.setVisible(true);
-//  c.setSize(555,363);
+     FlatDarkLaf.setup();
+     UIManager.put( "Button.arc", 200 );
+     UIManager.put( "Component.arc", 200 );
+     UIManager.put( "ProgressBar.arc", 200 );
+     UIManager.put( "TextComponent.arc", 30 );
 
+  Login frame1 = new Login();
+    frame1.setTitle("National Bank Of Egypt ATM");
+    frame1.setVisible(true);
+    frame1.setSize(400, 700);
+    frame1.setLocationRelativeTo(null);
+    frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
  }
 

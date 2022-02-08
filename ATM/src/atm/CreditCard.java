@@ -1,5 +1,7 @@
 package atm;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +21,13 @@ public class CreditCard extends JFrame implements ActionListener {
 
         static CustomerData p = new CustomerData();
         public CreditCard (){
+
+            FlatDarkLaf.setup();
+            UIManager.put( "Button.arc", 20 );
+            UIManager.put( "Component.arc", 20 );
+            UIManager.put( "ProgressBar.arc", 20 );
+            UIManager.put( "TextComponent.arc", 20 );
+            
             this.setTitle("National Bank Of Egypt ATM");
             this.setVisible(true);
             this.setSize(560, 363);
@@ -83,7 +92,7 @@ public class CreditCard extends JFrame implements ActionListener {
             l3.setForeground(Color.white);
             l3.setFont(f);
             t3 = new JTextField();
-            t3.setBackground(new Color(212, 212, 212));
+            //t3.setBackground(new Color(212, 212, 212));
             t3.setEditable(false);
             t3.setText(Integer.toString(p.balance));
             p4.add(l3);

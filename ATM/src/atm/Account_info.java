@@ -1,12 +1,11 @@
 package atm;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Account_info extends JFrame {
 
@@ -19,6 +18,11 @@ public class Account_info extends JFrame {
     Border border = new LineBorder(Color.BLACK, 2, false);
 
     public Account_info() {
+        FlatDarkLaf.setup();
+        UIManager.put( "Button.arc", 20 );
+        UIManager.put( "Component.arc", 20 );
+        UIManager.put( "ProgressBar.arc", 20 );
+        UIManager.put( "TextComponent.arc", 20 );
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
         this.setSize(450, 300);

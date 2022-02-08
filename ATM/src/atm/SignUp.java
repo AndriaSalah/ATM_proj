@@ -1,5 +1,6 @@
 package atm;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,10 +19,17 @@ public class SignUp extends JFrame implements ActionListener {
     StringBuilder sb = new StringBuilder();
     Random rnd = new Random();
     JButton b1,b2;
-    JLabel l1,l2,l3;
+    JLabel l1,l2,l3,l4,l5,l6;
     JTextField t1,t2,t3;
     ErrorHandel er = new ErrorHandel();
+    Font f = new Font("Sans",Font.PLAIN,30);
     public SignUp() {
+        FlatDarkLaf.setup();
+        UIManager.put( "Button.arc", 20 );
+        UIManager.put( "Component.arc", 20 );
+        UIManager.put( "ProgressBar.arc", 20 );
+        UIManager.put( "TextComponent.arc", 20 );
+        
         setSize(600,400);
         setVisible(true);
         setLocationRelativeTo(null);
@@ -31,8 +39,23 @@ public class SignUp extends JFrame implements ActionListener {
         JPanel pb,p1,p2;
         pb=new JPanel(new GridLayout(2,1,0,50));
         pb.setBackground(new Color(60,70,92));
-        p1 = new JPanel(new GridLayout(3,3,0,10));
+        p1 = new JPanel(new GridLayout(3,6,0,10));
         p1.setBackground(new Color(60,70,92));
+
+        // error indicators
+        l4 = new JLabel("*");
+        l4.setFont(f);
+        l4.setForeground(Color.RED);
+        l4.setVisible(false);
+        l5 = new JLabel("*");
+        l5.setFont(f);
+        l5.setForeground(Color.RED);
+        l5.setVisible(false);
+        l6 = new JLabel("*");
+        l6.setFont(f);
+        l6.setForeground(Color.RED);
+        l6.setVisible(false);
+
         l1 = new JLabel("Name");
         l1.setForeground(Color.white);
         l2 = new JLabel("Mobile number");
@@ -43,10 +66,13 @@ public class SignUp extends JFrame implements ActionListener {
         t2 = new JTextField();
         t3 = new JTextField();
         p1.add(l1);
+        p1.add(l4);
         p1.add(t1);
         p1.add(l2);
+        p1.add(l5);
         p1.add(t2);
         p1.add(l3);
+        p1.add(l6);
         p1.add(t3);
         pb.add(p1);
 
@@ -167,51 +193,74 @@ public class SignUp extends JFrame implements ActionListener {
                 if(t1.getText().isEmpty() || t2.getText().isEmpty() || t3.getText().isEmpty()){
                     JOptionPane.showMessageDialog(this, "Please enter the required data");
                 }
-                er.check_numbers(t1.getText());
-                er.check_letters(t2.getText());
-                er.checkpin(t3.getText());
+                if(!er.check_numbers(t1.getText())){
+                    l4.setVisible(true);
+                }
+                else l4.setVisible(false);
+                if(!er.check_letters(t2.getText())){
+                    l5.setVisible(true);
+                }
+                else l5.setVisible(false);
+                if(!er.checkpin(t3.getText())){
+                    l6.setVisible(true);
+                }
+                else l6.setVisible(false);
                     switch (er.indicator){
                         case "A":
                             JOptionPane.showMessageDialog(this,"please dont use Numbers in the name field");
+                            er.indicator="";
                             break;
                         case "B":
                             JOptionPane.showMessageDialog(this,"please dont use Letters in the Mobile field");
+                            er.indicator="";
                             break;
                         case "C":
-                            JOptionPane.showMessageDialog(this,"please make sure your pin is longer than 4 numbers");
+                            JOptionPane.showMessageDialog(this,"please make sure your pin is not longer than 4 numbers");
+                            er.indicator="";
                             break;
                         case "D":
                             JOptionPane.showMessageDialog(this,"please dont use Letters in the pin field");
+                            er.indicator="";
                             break;
                         case "CD":
                             JOptionPane.showMessageDialog(this,"please make sure you pin is not longer 4 numbers and doesnt contain any letters");
+                            er.indicator="";
                             break;
                         case "BD":
                             JOptionPane.showMessageDialog(this,"please make sure your pin doesnt contain any letters\n also check if the mobile field has any letters");
+                            er.indicator="";
                             break;
                         case "BC":
                             JOptionPane.showMessageDialog(this,"please make sure your pin is not longer than 4 numbers\nalso check if the mobile field has any letters");
+                            er.indicator="";
                             break;
                         case "BCD":
                             JOptionPane.showMessageDialog(this,"please make sure your pin doesnt contain any letters and is not longer than 4 numbers\nalso check if the mobile field has any letters");
+                            er.indicator="";
                             break;
                         case "AB":
                             JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the mobile field has any letters");
+                            er.indicator="";
                             break;
                         case "AC":
                             JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the pin entered is not longer than 4 numbers");
+                            er.indicator="";
                             break;
                         case "AD":
                             JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the pin field has any letters");
+                            er.indicator="";
                             break;
                         case "ABC":
                             JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the mobile field has any letters\nalso check if your pin is longer than 4 numbers");
+                            er.indicator="";
                             break;
                         case "ABD":
                             JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the mobile field has any letters\nalso check if your pin doesnt contain letters");
+                            er.indicator="";
                             break;
                         case "ABCD":
                             JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the mobile field has any letters\nalso check if your pin is longer than 4 numbers and contains letters");
+                            er.indicator="";
                             break;
                         default:
                             name = t1.getText();

@@ -1,5 +1,6 @@
 package atm;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -19,13 +20,22 @@ public class Fawry extends JFrame implements ActionListener {
     Border border = new LineBorder(Color.BLACK, 2, false);
     ImageIcon icon = createImageIcon("image/icon.png", "Fawry logo");
     Color c = new Color(60, 70, 92);
+    CustomerData p = new CustomerData();
+    ErrorHandel er = new ErrorHandel();
 
     public Fawry() {
+        FlatDarkLaf.setup();
+        UIManager.put( "Button.arc", 20 );
+        UIManager.put( "Component.arc", 20 );
+        UIManager.put( "ProgressBar.arc", 20 );
+        UIManager.put( "TextComponent.arc", 20 );
+
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
         this.setSize(333, 395);
         this.setLocationRelativeTo(null);
         this.setResizable(true);
+
         pb = new JPanel(new GridLayout(3, 1));
         pb.setBackground(c);
         l1 = new JLabel(icon);
@@ -85,9 +95,14 @@ public class Fawry extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Recharge":
-                JOptionPane.showMessageDialog(this, "Recharge was completed successfully");
-                t1.setText("");
-                t2.setText("");
+                if(er.check_letters(t2.getText()) && er.check_letters(t1.getText())) {
+                    p.place.add("fawry");
+                    p.price.add(t2.getText());
+                    JOptionPane.showMessageDialog(this, "Recharge was completed successfully");
+                    t1.setText("");
+                    t2.setText("");
+                }
+                else {JOptionPane.showMessageDialog(this, "please remove any letters");}
                 break;
             case "Cancel":
                 this.dispose();

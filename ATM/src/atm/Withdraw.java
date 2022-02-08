@@ -1,5 +1,6 @@
 package atm;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,13 +18,22 @@ public class Withdraw extends JFrame implements ActionListener {
     CustomerData p = new CustomerData();
 
     public Withdraw ( ){
+        //sets how the ui components would look like
+        FlatDarkLaf.setup();
+        UIManager.put( "Button.arc", 20 );
+        UIManager.put( "Component.arc", 20 );
+        UIManager.put( "ProgressBar.arc", 20 );
+        UIManager.put( "TextComponent.arc", 20 );
 
+        // sets the title that would be shown in the title bar
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
         this.setSize(555, 363);
         this.setLocationRelativeTo(null);
 
-        //base panel
+        //base panel that will have all the other panels added to it
+        //basically we divide our design into a series of panels that will have some specific components as some times
+        //a single panel with single design won't fulfill the design we want it to have
         pb = new JPanel(new GridLayout(3,1,0,100));
         pb.setBackground(c);
 
@@ -39,6 +49,7 @@ public class Withdraw extends JFrame implements ActionListener {
         t1.setEditable(false);
         p1.add(l1);
         p1.add(t1);
+
         //deposit entry
         p2= new JPanel(new GridLayout(1,2,100,100));
         p2.setBackground(c);
@@ -51,27 +62,41 @@ public class Withdraw extends JFrame implements ActionListener {
         p2.add(t2);
 
         //buttons
+        //panel init
         p3 = new JPanel(new GridLayout(1,3,100,100));
         p3.setBackground(c);
+        //panel init end
+
+        //withdraw start
         b1 = new JButton("Withdraw");
         b1.addActionListener(this);
         b1.setFont(f);
         b1.setBackground(new Color(91, 91, 91));
         b1.setForeground(new Color(228, 228, 228));
+        //withdraw end
+
+        //clear start
         b2 = new JButton("Clear");
         b2.addActionListener(this);
         b2.setFont(f);
         b2.setBackground(new Color(91, 91, 91));
         b2.setForeground(new Color(228, 228, 228));
+        //clear end
+
+        //cancel start
         b3 = new JButton("Cancel");
         b3.addActionListener(this);
         b3.setFont(f);
         b3.setBackground(new Color(91, 91, 91));
         b3.setForeground(new Color(228, 228, 228));
+        //cancel end
+
+        //adding components to the panel
         p3.add(b1);
         p3.add(b2);
         p3.add(b3);
 
+        //adding the customised panels to the base panel then adding the base panel to the frame
         pb.add(p1);
         pb.add(p2);
         pb.add(p3);

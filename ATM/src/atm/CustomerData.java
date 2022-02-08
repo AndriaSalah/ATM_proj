@@ -92,9 +92,9 @@ static ArrayList<Object> place = new ArrayList<>();
             PrintWriter h = new PrintWriter( "Data/"+num+".history.txt");
             for (int i = 0; i < place.size() ; i++) {
                 h.println(place.get(i));
-//                if(i != place.size() - 1) {
+
                     h.println(price.get(i));
-                //}
+
             }
             h.close();
 

@@ -1,0 +1,6 @@
+Internal Credit payment
+30000
+withdraw
+2222
+withdraw
+2222
