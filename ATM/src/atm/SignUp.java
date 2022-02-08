@@ -20,6 +20,7 @@ public class SignUp extends JFrame implements ActionListener {
     JButton b1,b2;
     JLabel l1,l2,l3;
     JTextField t1,t2,t3;
+    ErrorHandel er = new ErrorHandel();
     public SignUp() {
         setSize(600,400);
         setVisible(true);
@@ -166,18 +167,66 @@ public class SignUp extends JFrame implements ActionListener {
                 if(t1.getText().isEmpty() || t2.getText().isEmpty() || t3.getText().isEmpty()){
                     JOptionPane.showMessageDialog(this, "Please enter the required data");
                 }
-                else{
-                name = t1.getText();
-                mobile = t2.getText();
-                pin = t3.getText();
-                genAccNo();
-                genCardnum();
-                flush();
-                JOptionPane.showMessageDialog(this , "account Created successfully");
-                JOptionPane.showMessageDialog(this,"please enter your pin in the login page to access your account");
-                this.dispose();
-                }
-                break;
+                er.check_numbers(t1.getText());
+                er.check_letters(t2.getText());
+                er.checkpin(t3.getText());
+                    switch (er.indicator){
+                        case "A":
+                            JOptionPane.showMessageDialog(this,"please dont use Numbers in the name field");
+                            break;
+                        case "B":
+                            JOptionPane.showMessageDialog(this,"please dont use Letters in the Mobile field");
+                            break;
+                        case "C":
+                            JOptionPane.showMessageDialog(this,"please make sure your pin is longer than 4 numbers");
+                            break;
+                        case "D":
+                            JOptionPane.showMessageDialog(this,"please dont use Letters in the pin field");
+                            break;
+                        case "CD":
+                            JOptionPane.showMessageDialog(this,"please make sure you pin is not longer 4 numbers and doesnt contain any letters");
+                            break;
+                        case "BD":
+                            JOptionPane.showMessageDialog(this,"please make sure your pin doesnt contain any letters\n also check if the mobile field has any letters");
+                            break;
+                        case "BC":
+                            JOptionPane.showMessageDialog(this,"please make sure your pin is not longer than 4 numbers\nalso check if the mobile field has any letters");
+                            break;
+                        case "BCD":
+                            JOptionPane.showMessageDialog(this,"please make sure your pin doesnt contain any letters and is not longer than 4 numbers\nalso check if the mobile field has any letters");
+                            break;
+                        case "AB":
+                            JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the mobile field has any letters");
+                            break;
+                        case "AC":
+                            JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the pin entered is not longer than 4 numbers");
+                            break;
+                        case "AD":
+                            JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the pin field has any letters");
+                            break;
+                        case "ABC":
+                            JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the mobile field has any letters\nalso check if your pin is longer than 4 numbers");
+                            break;
+                        case "ABD":
+                            JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the mobile field has any letters\nalso check if your pin doesnt contain letters");
+                            break;
+                        case "ABCD":
+                            JOptionPane.showMessageDialog(this,"please make sure your name doesnt contain any numbers\nalso check if the mobile field has any letters\nalso check if your pin is longer than 4 numbers and contains letters");
+                            break;
+                        default:
+                            name = t1.getText();
+                            mobile = t2.getText();
+                            pin = t3.getText();
+                            genAccNo();
+                            genCardnum();
+                            flush();
+                            JOptionPane.showMessageDialog(this , "account Created successfully");
+                            JOptionPane.showMessageDialog(this,"please enter your pin in the login page to access your account");
+                            this.dispose();
+                            break;
+                         }
+                         break;
+
 
             case "Cancel" :
                 this.dispose();

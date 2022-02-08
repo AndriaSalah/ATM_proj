@@ -15,6 +15,7 @@ static String num ;
     public static  String mobile     ;
     public static  int  owe          ;
 
+
 static ArrayList<Object> price = new ArrayList<>();
 static ArrayList<Object> place = new ArrayList<>();
 
