@@ -11,8 +11,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class MainPage extends JFrame implements ActionListener {
+public class MainPage extends JFrame implements ActionListener, MouseListener {
 
     JButton balance_info, deposit, withdraw, accounts, pay_credit, Fawry, Logout;
     Dimension d = new Dimension(200, 50);
@@ -21,8 +23,8 @@ public class MainPage extends JFrame implements ActionListener {
     Font f2 = new Font("SansSerif", Font.PLAIN, 34);
     CustomerData p = new CustomerData();
     ImageIcon icon = createImageIcon("image/download.png", "bank logo");
-    
-
+    JPanel pb, p1, p2, p3, p4;
+    JLabel l1 = new JLabel("Welcome, "+p.holders,icon,SwingConstants.CENTER) ;
     public MainPage() {
         FlatDarkLaf.setup();
         UIManager.put( "Button.arc", 20 );
@@ -41,18 +43,21 @@ public class MainPage extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-         JLabel l1 = new JLabel("Welcome, "+p.holders,icon,SwingConstants.CENTER) ;
+        
 
         l1.setFont(f2);
         l1.setForeground(Color.WHITE);
-        JPanel pb, p1, p2, p3, p4;
+        l1.addMouseListener(this);
+        
         pb = new JPanel(new GridLayout(4, 1, 20, 20));
         pb.setBackground(c);
-
+        
         //title
         p1 = new JPanel(new GridLayout(1, 1, 20, 20));
         p1.setBackground(new Color(2, 94, 2));
+       
         p1.add(l1, SwingConstants.CENTER);
+       
 
         //first 2 buttons
         p2 = new JPanel(new BorderLayout());
@@ -64,6 +69,7 @@ public class MainPage extends JFrame implements ActionListener {
         balance_info.setBackground(new Color(91, 91, 91));
         balance_info.setForeground(new Color(228, 228, 228));
         balance_info.addActionListener(this);
+        balance_info.addMouseListener(this);
 
         deposit = new JButton("DEPOSIT");
         deposit.setPreferredSize(d);
@@ -71,6 +77,7 @@ public class MainPage extends JFrame implements ActionListener {
         deposit.setBackground(new Color(91, 91, 91));
         deposit.setForeground(new Color(228, 228, 228));
         deposit.addActionListener(this);
+        deposit.addMouseListener(this);
 
         p2.add(balance_info, BorderLayout.EAST);
         p2.add(deposit, BorderLayout.WEST);
@@ -85,6 +92,8 @@ public class MainPage extends JFrame implements ActionListener {
         withdraw.setBackground(new Color(91, 91, 91));
         withdraw.setForeground(new Color(228, 228, 228));
         withdraw.addActionListener(this);
+        withdraw.addMouseListener(this);
+        
 
         accounts = new JButton("ACCOUNT INFO");
         accounts.setPreferredSize(d);
@@ -92,6 +101,7 @@ public class MainPage extends JFrame implements ActionListener {
         accounts.setBackground(new Color(91, 91, 91));
         accounts.setForeground(new Color(228, 228, 228));
         accounts.addActionListener(this);
+        accounts.addMouseListener(this);
 
         p3.add(withdraw, BorderLayout.EAST);
         p3.add(accounts, BorderLayout.WEST);
@@ -106,6 +116,7 @@ public class MainPage extends JFrame implements ActionListener {
         pay_credit.setBackground(new Color(91, 91, 91));
         pay_credit.setForeground(new Color(228, 228, 228));
         pay_credit.addActionListener(this);
+        pay_credit.addMouseListener(this);
 
         Fawry = new JButton("FAWRY");
         Fawry.setPreferredSize(d);
@@ -113,6 +124,7 @@ public class MainPage extends JFrame implements ActionListener {
         Fawry.setBackground(new Color(91, 91, 91));
         Fawry.setForeground(new Color(228, 228, 228));
         Fawry.addActionListener(this);
+        Fawry.addMouseListener(this);
 
 
         Logout = new JButton("Log Out");
@@ -134,6 +146,7 @@ public class MainPage extends JFrame implements ActionListener {
         pb.add(p3);
         pb.add(p4);
         this.add(pb);
+        this.addMouseListener(this);
     }
 
     @Override
@@ -188,5 +201,64 @@ public class MainPage extends JFrame implements ActionListener {
     }
 
 
+    @Override
+    public void mouseClicked(MouseEvent ae) {
 
+    }
+
+    @Override
+    public void mousePressed(MouseEvent ae) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent ae) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent ae) {
+
+    if(ae.getSource() == balance_info ){
+    balance_info.setBackground(new Color(2, 94, 2));
+    }
+    else if(ae.getSource() == deposit ){
+    deposit.setBackground(new Color(2, 94, 2));
+    }
+      if(ae.getSource() == withdraw ){
+    withdraw.setBackground(new Color(2, 94, 2));
+    }
+       if(ae.getSource() == accounts ){
+    accounts.setBackground(new Color(2, 94, 2));
+    }
+        if(ae.getSource() == pay_credit ){
+    pay_credit.setBackground(new Color(2, 94, 2));
+    }
+        if(ae.getSource() == Fawry ){
+    Fawry.setBackground(new Color(2, 94, 2));
+    }
+    }
+
+    @Override
+    public void mouseExited(MouseEvent ae) {
+            if(ae.getSource() == balance_info ){
+    balance_info.setBackground(new Color(91, 91, 91));
+    }
+     if(ae.getSource() == deposit ){
+    deposit.setBackground(new Color(91, 91, 91));
+    }
+      if(ae.getSource() == withdraw ){
+    withdraw.setBackground(new Color(91, 91, 91));
+    }
+       if(ae.getSource() == accounts ){
+    accounts.setBackground(new Color(91, 91, 91));
+    }
+        if(ae.getSource() == pay_credit ){
+    pay_credit.setBackground(new Color(91, 91, 91));
+    }
+        if(ae.getSource() == Fawry ){
+    Fawry.setBackground(new Color(91, 91, 91));
+    }
+        
+    }
 }

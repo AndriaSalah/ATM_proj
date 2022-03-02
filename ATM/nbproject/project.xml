@@ -5,6 +5,8 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>ATM</name>
             <source-roots>
+                <root id="src.Data.dir"/>
+                <root id="src.Image.dir"/>
                 <root id="src.dir"/>
             </source-roots>
             <test-roots>

@@ -30,6 +30,7 @@ public class ATM {
     frame1.setLocationRelativeTo(null);
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+
  }
 
 }

@@ -13,8 +13,10 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Login extends JFrame implements ActionListener {
+public class Login extends JFrame implements ActionListener,MouseListener {
 
     //frame stuff
     JPasswordField t1;
@@ -22,7 +24,7 @@ public class Login extends JFrame implements ActionListener {
 
     CustomerData p = new CustomerData();
     Border border = new LineBorder(Color.BLACK, 1, true);
-
+    JLabel l1, l2;
     public Login() {
         //change how the ui components will look like
         FlatDarkLaf.setup();
@@ -53,7 +55,7 @@ public class Login extends JFrame implements ActionListener {
         p.setLayout(new GridLayout(6, 1));
 
         //component init
-        JLabel l1, l2;
+        //JLabel l1, l2;
 
         //panel 1 fr labels
         p1 = new JPanel();
@@ -71,7 +73,7 @@ public class Login extends JFrame implements ActionListener {
         p1.add(l1);
         p1.add(l2);
         p.add(p1);
-        ;
+        
 
         //panel 2 for text field
         p2 = new JPanel();
@@ -95,7 +97,7 @@ public class Login extends JFrame implements ActionListener {
         //for loop to make 1-9 buttons
         for (int i = 1; i < 10; i++) {
             b = new JButton(String.valueOf(i));
-           // b.setBorder(border);
+            // b.setBorder(border);
             b.setBackground(new Color(91, 91, 91));
             b.setForeground(new Color(228, 228, 228));
             b.addActionListener(this);
@@ -115,6 +117,7 @@ public class Login extends JFrame implements ActionListener {
 
         b4.setBackground(new Color(91, 91, 91));
         b4.setForeground(new Color(228, 228, 228));
+        b4.addMouseListener(this);
         p6 = new JPanel();
         p6.setBackground(new Color(60, 70, 92));
         p6.add(b4);
@@ -190,10 +193,12 @@ public class Login extends JFrame implements ActionListener {
             //for numbers
             case "0":
                 t1.setText(t1.getText() + 0);
+                
                 delete.setEnabled(true);
                 break;
             case "1":
                 t1.setText(t1.getText() + 1);
+                
                 delete.setEnabled(true);
                 break;
             case "2":
@@ -231,23 +236,47 @@ public class Login extends JFrame implements ActionListener {
 
             case "<":
                 if(!t1.getText().isEmpty() ){
-                String text = t1.getText();
-                text = text.substring(0,text.length()-1);
-                t1.setText(text);
+                    String text = t1.getText();
+                    text = text.substring(0,text.length()-1);
+                    t1.setText(text);
                 }
                 else{JOptionPane.showMessageDialog(this, "Password field is already empty ");
-                delete.setEnabled(false);}
+                    delete.setEnabled(false);}
                 break;
 
             case "Sign-up":
                 SignUp s = new SignUp();
-                default:
-            }
-
-
+            default:
         }
 
 
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+        
+    }
+
+
 }
+
 
 
