@@ -2,7 +2,3 @@ Internal Credit payment
 30000
 withdraw
 1111
-Transfer-out
-10000
-Transfer-out
-10000

@@ -21,9 +21,9 @@ public class SignUp extends JFrame implements ActionListener, MouseListener {
     String account_number;
     StringBuilder sb = new StringBuilder();
     Random rnd = new Random();
-    JButton b1, b2;
-    JLabel l1, l2, l3, l4, l5, l6;
-    JTextField t1, t2, t3;
+    JButton sign_up, cancel;
+    JLabel Name_l, Phone_l, Pin_l, err_name, err_phone, err_pin;
+    JTextField Username, Mobile, Pin;
     ErrorHandel er = new ErrorHandel();
     Font f = new Font("Sans", Font.PLAIN, 30);
     boolean click = false;
@@ -50,71 +50,72 @@ public class SignUp extends JFrame implements ActionListener, MouseListener {
         p1.setBackground(new Color(60, 70, 92));
 
         // error indicators
-        l4 = new JLabel("*");
-        l4.setFont(f);
-        l4.setForeground(Color.RED);
-        l4.setVisible(false);
-        l5 = new JLabel("*");
-        l5.setFont(f);
-        l5.setForeground(Color.RED);
-        l5.setVisible(false);
-        l6 = new JLabel("*");
-        l6.setFont(f);
-        l6.setForeground(Color.RED);
-        l6.setVisible(false);
+        err_name = new JLabel("*");
+        err_name.setFont(f);
+        err_name.setForeground(Color.RED);
+        err_name.setVisible(false);
+        err_phone = new JLabel("*");
+        err_phone.setFont(f);
+        err_phone.setForeground(Color.RED);
+        err_phone.setVisible(false);
+        err_pin = new JLabel("*");
+        err_pin.setFont(f);
+        err_pin.setForeground(Color.RED);
+        err_pin.setVisible(false);
 
-        l1 = new JLabel("Name");
-        l1.setForeground(Color.white);
-        l2 = new JLabel("Mobile number");
-        l2.setForeground(Color.white);
-        l3 = new JLabel("Pin");
-        l3.setForeground(Color.white);
-        t1 = new JTextField("Name");
-        t1.addMouseListener(this);
-        t2 = new JTextField("Phone number");
-        t2.addMouseListener(this);
-        t3 = new JTextField("Pin");
-        t3.addMouseListener(this);
-        p1.add(l1);
-        p1.add(l4);
-        p1.add(t1);
-        p1.add(l2);
-        p1.add(l5);
-        p1.add(t2);
-        p1.add(l3);
-        p1.add(l6);
-        p1.add(t3);
+        Name_l = new JLabel("Name");
+        Name_l.setForeground(Color.white);
+        Phone_l = new JLabel("Mobile number");
+        Phone_l.setForeground(Color.white);
+        Pin_l = new JLabel("Pin");
+        Pin_l.setForeground(Color.white);
+        Username = new JTextField("Name");
+        Username.addMouseListener(this);
+        Mobile = new JTextField("Phone number");
+        Mobile.addMouseListener(this);
+        Pin = new JTextField("Pin");
+        Pin.addMouseListener(this);
+        p1.add(Name_l);
+        p1.add(err_name);
+        p1.add(Username);
+        p1.add(Phone_l);
+        p1.add(err_phone);
+        p1.add(Mobile);
+        p1.add(Pin_l);
+        p1.add(err_pin);
+        p1.add(Pin);
         pb.add(p1);
 
         p2 = new JPanel(new FlowLayout());
         p2.setBackground(new Color(60, 70, 92));
-        b1 = new JButton("Sign-Up");
-        b1.setPreferredSize(new Dimension(150, 60));
-        b1.setBackground(new Color(0, 103, 0));
-        b1.setForeground(Color.white);
-        b1.addActionListener(this);
-        b2 = new JButton("Cancel");
-        b2.setBackground(new Color(103, 0, 0));
-        b2.setForeground(Color.white);
-        b2.setPreferredSize(new Dimension(150, 60));
-        b2.addActionListener(this);
-        p2.add(b1);
-        p2.add(b2);
+        sign_up = new JButton("Sign-Up");
+        sign_up.setPreferredSize(new Dimension(150, 60));
+        sign_up.setBackground(new Color(0, 103, 0));
+        sign_up.setForeground(Color.white);
+        sign_up.addActionListener(this);
+        cancel = new JButton("Cancel");
+        cancel.setBackground(new Color(103, 0, 0));
+        cancel.setForeground(Color.white);
+        cancel.setPreferredSize(new Dimension(150, 60));
+        cancel.addActionListener(this);
+        p2.add(sign_up);
+        p2.add(cancel);
         pb.add(p2);
         add(pb);
 
     }
 
-    public void genAccNo() {
+    public void genAccNo(String pin) {
 
         String Chars = "abcdefghijklmnopqrstuvwxyz123456789";
 
         do {
-            while (sb.length() < 9) {
+            while (sb.length() < 5) {
                 int randomint = rnd.nextInt(Chars.length());
                 char in = Chars.charAt(randomint);
                 sb.append(in);
             }
+            sb.append(pin);
             account_number = sb.toString();
         } while (!randcheck());
 
@@ -195,23 +196,23 @@ public class SignUp extends JFrame implements ActionListener, MouseListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Sign-Up":
-                if (t1.getText().isEmpty() || t2.getText().isEmpty() || t3.getText().isEmpty()) {
+                if (Username.getText().isEmpty() || Mobile.getText().isEmpty() || Pin.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Please enter the required data");
                 }
-                if (!er.check_numbers(t1.getText())) {
-                    l4.setVisible(true);
+                if (!er.check_numbers(Username.getText())) {
+                    err_name.setVisible(true);
                 } else {
-                    l4.setVisible(false);
+                    err_name.setVisible(false);
                 }
-                if (!er.check_letters(t2.getText())) {
-                    l5.setVisible(true);
+                if (!er.check_letters(Mobile.getText())) {
+                    err_phone.setVisible(true);
                 } else {
-                    l5.setVisible(false);
+                    err_phone.setVisible(false);
                 }
-                if (!er.checkpin(t3.getText())) {
-                    l6.setVisible(true);
+                if (!er.checkpin(Pin.getText())) {
+                    err_pin.setVisible(true);
                 } else {
-                    l6.setVisible(false);
+                    err_pin.setVisible(false);
                 }
                 switch (er.indicator) {
                     case "A":
@@ -271,10 +272,10 @@ public class SignUp extends JFrame implements ActionListener, MouseListener {
                         er.indicator = "";
                         break;
                     default:
-                        name = t1.getText();
-                        mobile = t2.getText();
-                        pin = t3.getText();
-                        genAccNo();
+                        name = Username.getText();
+                        mobile = Mobile.getText();
+                        pin = Pin.getText();
+                        genAccNo(pin);
                         genCardnum();
                         flush();
                         JOptionPane.showMessageDialog(this, "account Created successfully");
@@ -292,19 +293,19 @@ public class SignUp extends JFrame implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == t1) {
+        if (e.getSource() == Username) {
             click = true;
             click2 = false;
             click3 = false;
 
         }
-        if (e.getSource() == t2) {
+        if (e.getSource() == Mobile) {
             click = false;
             click2 = true;
             click3 = false;
 
         }
-        if (e.getSource() == t3) {
+        if (e.getSource() == Pin) {
             click = false;
             click3 = true;
             click2 = false;
@@ -325,24 +326,24 @@ public class SignUp extends JFrame implements ActionListener, MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if (e.getSource() == t1) {
+        if (e.getSource() == Username) {
             if (!click) {
-                if (t1.getText().equals("Name")) {
-                    t1.setText("");
+                if (Username.getText().equals("Name")) {
+                    Username.setText("");
                 }
             }
         }
-        if (e.getSource() == t2) {
+        if (e.getSource() == Mobile) {
             if (!click2) {
-                if (t2.getText().equals("Phone number")) {
-                    t2.setText("");
+                if (Mobile.getText().equals("Phone number")) {
+                    Mobile.setText("");
                 }
             }
         }
-        if (e.getSource() == t3) {
+        if (e.getSource() == Pin) {
             if (!click3) {
-                if (t3.getText().equals("Pin")) {
-                    t3.setText("");
+                if (Pin.getText().equals("Pin")) {
+                    Pin.setText("");
                 }
             }
         }
@@ -350,24 +351,24 @@ public class SignUp extends JFrame implements ActionListener, MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (e.getSource() == t1) {
+        if (e.getSource() == Username) {
             if (!click) {
-                if (t1.getText().equals("")) {
-                    t1.setText("Name");
+                if (Username.getText().equals("")) {
+                    Username.setText("Name");
                 }
             }
         }
-        if (e.getSource() == t2) {
+        if (e.getSource() == Mobile) {
             if (!click2) {
-                if (t2.getText().equals("")) {
-                    t2.setText("Phone number");
+                if (Mobile.getText().equals("")) {
+                    Mobile.setText("Phone number");
                 }
             }
         }
-        if (e.getSource() == t3) {
+        if (e.getSource() == Pin) {
             if (!click3) {
-                if (t3.getText().equals("")) {
-                    t3.setText("Pin");
+                if (Pin.getText().equals("")) {
+                    Pin.setText("Pin");
                 }
             }
         }

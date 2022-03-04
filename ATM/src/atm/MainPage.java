@@ -16,7 +16,7 @@ import java.awt.event.MouseListener;
 
 public class MainPage extends JFrame implements ActionListener, MouseListener {
 
-    JButton balance_info, deposit, withdraw, accounts, pay_credit, Fawry, Logout;
+    JButton balance_info, deposit, withdraw, accounts, pay_credit, Fawry,Transfer ,Logout;
     Dimension d = new Dimension(200, 50);
     Color c = new Color(60, 70, 92);
     Font f = new Font("SansSerif", Font.PLAIN, 17);
@@ -118,13 +118,21 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
         pay_credit.addActionListener(this);
         pay_credit.addMouseListener(this);
 
-        Fawry = new JButton("FAWRY");
-        Fawry.setPreferredSize(d);
-        Fawry.setFont(f);
-        Fawry.setBackground(new Color(91, 91, 91));
-        Fawry.setForeground(new Color(228, 228, 228));
-        Fawry.addActionListener(this);
-        Fawry.addMouseListener(this);
+//        Fawry = new JButton("FAWRY");
+//        Fawry.setPreferredSize(d);
+//        Fawry.setFont(f);
+//        Fawry.setBackground(new Color(91, 91, 91));
+//        Fawry.setForeground(new Color(228, 228, 228));
+//        Fawry.addActionListener(this);
+//        Fawry.addMouseListener(this);
+
+        Transfer = new JButton("TRANSFER");
+        Transfer.setPreferredSize(d);
+        Transfer.setFont(f);
+        Transfer.setBackground(new Color(91, 91, 91));
+        Transfer.setForeground(new Color(228, 228, 228));
+        Transfer.addActionListener(this);
+        Transfer.addMouseListener(this);
 
 
         Logout = new JButton("Log Out");
@@ -138,7 +146,7 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
 
         p4.add(pay_credit);
         p4.add(Logout);
-        p4.add(Fawry);
+        p4.add(Transfer);
 
         //add to base
         pb.add(p1);
@@ -168,8 +176,8 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
                 Withdraw w = new Withdraw();
                 break;
 
-            case "FAWRY":
-                Fawry f = new Fawry();
+            case "Transfer":
+                Transfer f = new Transfer();
                 break;
 
             case "CREDIT CARD":
@@ -234,14 +242,14 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
         if(ae.getSource() == pay_credit ){
     pay_credit.setBackground(new Color(2, 94, 2));
     }
-        if(ae.getSource() == Fawry ){
-    Fawry.setBackground(new Color(2, 94, 2));
+        if(ae.getSource() == Transfer ){
+    Transfer.setBackground(new Color(2, 94, 2));
     }
     }
 
     @Override
     public void mouseExited(MouseEvent ae) {
-            if(ae.getSource() == balance_info ){
+    if(ae.getSource() == balance_info ){
     balance_info.setBackground(new Color(91, 91, 91));
     }
      if(ae.getSource() == deposit ){
@@ -256,8 +264,8 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
         if(ae.getSource() == pay_credit ){
     pay_credit.setBackground(new Color(91, 91, 91));
     }
-        if(ae.getSource() == Fawry ){
-    Fawry.setBackground(new Color(91, 91, 91));
+        if(ae.getSource() == Transfer ){
+    Transfer.setBackground(new Color(91, 91, 91));
     }
         
     }
