@@ -40,7 +40,7 @@ public class Login extends JFrame implements ActionListener,MouseListener {
         //sets a title that would be shown in the title bar
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
-        this.setSize(400, 700);
+        this.setSize(400, 698);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -170,7 +170,6 @@ public class Login extends JFrame implements ActionListener,MouseListener {
         String buffer = (pin.getText());
         if (p.get_data(buffer)) {
             MainPage m = new MainPage();
-//            Transfer tr = new Transfer();
             this.dispose();
 
         } else {

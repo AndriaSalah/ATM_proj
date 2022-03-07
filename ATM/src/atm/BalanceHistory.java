@@ -49,7 +49,7 @@ public class BalanceHistory extends JFrame implements ActionListener {
             l2.setForeground(new Color(228, 228, 228));
 
 
-        l2.setText(p.holders);
+        l2.setText(p.Owner_Name);
         p2.add(l1, BorderLayout.WEST);
         p2.add(l2, BorderLayout.CENTER);
         p1.add(p2);

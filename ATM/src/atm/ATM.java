@@ -29,8 +29,7 @@ public class ATM {
     frame1.setSize(400, 698);
     frame1.setLocationRelativeTo(null);
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//  Transfer tr= new Transfer();
-//    tr.setSize(600,400);
+
 
  }
 

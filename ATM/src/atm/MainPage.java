@@ -24,7 +24,7 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
     CustomerData p = new CustomerData();
     ImageIcon icon = createImageIcon("image/download.png", "bank logo");
     JPanel pb, p1, p2, p3, p4;
-    JLabel l1 = new JLabel("Welcome, "+p.holders,icon,SwingConstants.CENTER) ;
+    JLabel l1 = new JLabel("Welcome, "+p.Owner_Name,icon,SwingConstants.CENTER) ;
     public MainPage() {
         FlatDarkLaf.setup();
         UIManager.put( "Button.arc", 20 );
@@ -176,7 +176,7 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
                 Withdraw w = new Withdraw();
                 break;
 
-            case "Transfer":
+            case "TRANSFER":
                 Transfer f = new Transfer();
                 break;
 

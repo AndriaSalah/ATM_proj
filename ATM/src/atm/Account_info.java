@@ -37,7 +37,7 @@ public class Account_info extends JFrame {
         l1 = new JLabel("Name          : ");
         l1.setFont(f);
         l1.setForeground(new Color(228, 228, 228));
-        l2 = new JLabel(p.holders, SwingConstants.CENTER);
+        l2 = new JLabel(p.Owner_Name, SwingConstants.CENTER);
         l2.setFont(f2);
         l2.setForeground(new Color(252, 194, 0));
         p1.add(l1, BorderLayout.WEST);
