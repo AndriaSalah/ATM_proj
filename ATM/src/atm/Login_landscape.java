@@ -16,19 +16,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Login_test extends JFrame implements ActionListener, MouseListener {
+public class Login_landscape extends JFrame implements ActionListener,MouseListener {
 
     //frame stuff
-    JPasswordField t1;
-    JButton b, b2, b3, b4, delete,newacc;
+    JPasswordField pin;
+    JButton b, Login, Exit, zero, delete, Sign_up;
 
     CustomerData p = new CustomerData();
     Border border = new LineBorder(Color.BLACK, 1, true);
-    JLabel l1, l2;
-    public Login_test() {
+    JLabel Header, label;
+    public Login_landscape() {
         //change how the ui components will look like
         FlatDarkLaf.setup();
-        UIManager.put( "Button.arc", 999 );
+        UIManager.put( "Button.arc", 200 );
         UIManager.put( "Component.arc", 200 );
         UIManager.put( "ProgressBar.arc", 200 );
         UIManager.put( "TextComponent.arc", 200 );
@@ -40,7 +40,7 @@ public class Login_test extends JFrame implements ActionListener, MouseListener 
         //sets a title that would be shown in the title bar
         this.setTitle("National Bank Of Egypt ATM");
         this.setVisible(true);
-        this.setSize(400, 700);
+        this.setSize(649, 352);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -48,61 +48,64 @@ public class Login_test extends JFrame implements ActionListener, MouseListener 
         //basically we divide our design into a series of panels that will have some specific components as some times
         //a single panel with single design won't fulfill the design we want it to have
         //panel init
+        JPanel basepanel =new JPanel (new GridLayout(1,2));
+        JPanel extra = new JPanel(new GridLayout(2,1));
+        JPanel extra2 = new JPanel(new BorderLayout());
         JPanel p = new JPanel();
         p.setBackground(new Color(60, 70, 92));
-        JPanel p1, p2, p3, p4, p5, p6,pb,picp,pbt;
+        JPanel p1, p2, p3, p4, p5, p6;
 
-        p.setLayout(new GridLayout(2, 1));
+        p.setLayout(new BorderLayout());
 
         //component init
-
+        //JLabel l1, l2;
 
         //panel 1 fr labels
         p1 = new JPanel();
         p1.setBackground(new Color(60, 70, 92));
-        p1.setLayout(new GridLayout(1, 1));
-        l1 = new JLabel("Welcome to the National Bank Of Egypt", SwingConstants.CENTER);
-        l1.addMouseListener(this);
-        l2 = new JLabel("Please enter your pin", SwingConstants.CENTER);
-        l1.setFont(new Font("Times", Font.BOLD, 20));
-        l1.setForeground(Color.white);
-        l2.setForeground(Color.white);
-        l1.setOpaque(true);
-        l1.setBackground(new Color(0, 103, 0));
-        l2.setFont(new Font("Times", Font.PLAIN, 15));
+        p1.setLayout(new GridLayout(3, 1));
+        JPanel empty = new JPanel();
+        empty.setBackground(new Color(0, 103, 0));
+        Header = new JLabel("Welcome to the National Bank Of Egypt", SwingConstants.CENTER);
+        label = new JLabel();
+        Header.setFont(new Font("Times", Font.BOLD, 20));
+        Header.setForeground(Color.white);
+        label.setForeground(Color.white);
+        Header.setOpaque(true);
+        Header.setBackground(new Color(0, 103, 0));
+        label.setFont(new Font("Times", Font.PLAIN, 15));
 
-        p1.add(l1);
-        //p1.add(l2);
-        //p.add(p1);
+        p1.add(Header);
+        p1.add(empty);
+        p1.add(label);
+        extra2.add(p1,BorderLayout.NORTH);
 
 
         //panel 2 for text field
         p2 = new JPanel();
         p2.setBackground(new Color(60, 70, 92));
-        t1 = new JPasswordField(5);
+        pin = new JPasswordField(3);
 
-        t1.setFont(new Font("sans", Font.PLAIN, 36));
-        t1.setEditable(false);
+        pin.setFont(new Font("sans", Font.PLAIN, 36));
+        pin.setEditable(false);
 
-        t1.addActionListener(this);
-        p2.add(t1);
-
+        pin.addActionListener(this);
+        p2.add(pin);
         //p.add(p2);
 
 
         //panel3 for buttons
         p3 = new JPanel();
         p3.setBackground(new Color(60, 70, 92));
-        p3.setLayout(new GridLayout(0, 3, 10, 5));
-        //p3.setSize(400, 400);
+        p3.setLayout(new GridLayout(0, 3, 5, 5));
+        p3.setSize(400, 400);
 
         //for loop to make 1-9 buttons
         for (int i = 1; i < 10; i++) {
             b = new JButton(String.valueOf(i));
-           // b.setBorder(border);
+            // b.setBorder(border);
             b.setBackground(new Color(91, 91, 91));
             b.setForeground(new Color(228, 228, 228));
-            b.setPreferredSize( new Dimension(65,35));
             b.addActionListener(this);
             p3.add(b);
         }
@@ -115,89 +118,76 @@ public class Login_test extends JFrame implements ActionListener, MouseListener 
         delete.setBackground(new Color(91, 91, 91));
         delete.setForeground(new Color(228, 228, 228));
         p2.add(delete);
-        b4 = new JButton("0");
-        b4.addActionListener(this);
-        b4.setPreferredSize(new Dimension(65, 35));
+        zero = new JButton("0");
+        zero.addActionListener(this);
+        zero.setPreferredSize(new Dimension(102, 35));
 
-        b4.setBackground(new Color(91, 91, 91));
-        b4.setForeground(new Color(228, 228, 228));
+        zero.setBackground(new Color(91, 91, 91));
+        zero.setForeground(new Color(228, 228, 228));
+        zero.addMouseListener(this);
         p6 = new JPanel();
         p6.setBackground(new Color(60, 70, 92));
-        p6.add(b4);
-        //p6.add(delete);
+        p6.add(zero);
+       // p6.add(delete);
 
-
+        //p.add(p3);
+        //p.add(p6);
 
         // panel 4 for login and exit buttons
         p5 = new JPanel();
         p5.setBackground(new Color(60, 70, 92));
-        //p.add(p5);
-        p.add(p3);
-        p.add(p6);
+        p.add(p5);
         p4 = new JPanel();
         p4.setBackground(new Color(60, 70, 92));
         p4.setSize(400, 400);
 
         // Login button / button 2 customization
-        b2 = new JButton("Login");
-        b2.addActionListener(this);
-        b2.setPreferredSize(new Dimension(100, 50));
-        b2.setBackground(new Color(0, 103, 0));
-        b2.setForeground(Color.white);
+        Login = new JButton("Login");
+        Login.addActionListener(this);
+        Login.setPreferredSize(new Dimension(100, 50));
+        Login.setBackground(new Color(0, 103, 0));
+        Login.setForeground(Color.white);
 
 
         // EXIT button / button 3 customization
-        b3 = new JButton("Exit");
-        b3.addActionListener(this);
-        b3.setPreferredSize(new Dimension(100, 50));
-        b3.setBackground(new Color(103, 0, 0));
-        b3.setForeground(Color.white);
+        Exit = new JButton("Exit");
+        Exit.addActionListener(this);
+        Exit.setPreferredSize(new Dimension(100, 50));
+        Exit.setBackground(new Color(103, 0, 0));
+        Exit.setForeground(Color.white);
 
 
         // Create new account button
-        newacc = new JButton("Sign-up");
-        newacc.addActionListener(this);
-        newacc.setPreferredSize(new Dimension (100,50));
-        newacc.setBackground(new Color(0,103,0));
-        newacc.setForeground(Color.white);
+        Sign_up = new JButton("Sign-up");
+        Sign_up.addActionListener(this);
+        Sign_up.setPreferredSize(new Dimension (100,50));
+        Sign_up.setBackground(new Color(0,103,0));
+        Sign_up.setForeground(Color.white);
 
-        // second panel
-        picp = new JPanel(new GridLayout (3,1));
-        picp.setBackground(new Color(60, 70, 92));
-        JPanel empty = new JPanel();
-        empty.setBackground(new Color(60, 70, 92));
-        //l3 = new JLabel(new ImageIcon("G:/Projects/ATM_proj/ATM/src/atm/Image/882.jpg"));
-        //picp.add(l3);
-        picp.add(empty);
-        picp.add(p2);
-
-        p4.add(b2);
-        p4.add(b3);
-        p4.add(newacc);
-        //p.add(p4);
-        pb = new JPanel(new GridLayout(3,1,0,20));
-
-        pbt = new JPanel(new GridLayout(1,2));
-        pbt.add(picp);
-        pbt.add(p);
-        pb.add(p1); //label
-        //pbb.add(p);
-        pb.add(pbt); // base panel for the two main panels
-        pb.add(p4);
-
-        this.add(pb);
+        p.add(p2,BorderLayout.CENTER);
+        p4.add(Login);
+        p4.add(Exit);
+        p4.add(Sign_up);
+        p.add(p4,BorderLayout.SOUTH);
+        //extra.add(p2);
+        extra.add(p3);
+        extra.add(p6);
+        basepanel.add(p);
+        basepanel.add(extra);
+        extra2.add(basepanel,BorderLayout.CENTER);
+        this.add(extra2);
     }
 
     public void verify() {
 
-        String buffer = (t1.getText());
+        String buffer = (pin.getText());
         if (p.get_data(buffer)) {
             MainPage m = new MainPage();
             this.dispose();
 
         } else {
             JOptionPane.showMessageDialog(this, "Pin is incorrect please try again", "Failed Login", JOptionPane.ERROR_MESSAGE);
-            t1.setText("");
+            pin.setText("");
         }
 
     }
@@ -215,94 +205,91 @@ public class Login_test extends JFrame implements ActionListener, MouseListener 
                 break;
             //for numbers
             case "0":
-                t1.setText(t1.getText() + 0);
+                pin.setText(pin.getText() + 0);
+
                 delete.setEnabled(true);
                 break;
             case "1":
-                t1.setText(t1.getText() + 1);
+                pin.setText(pin.getText() + 1);
+
                 delete.setEnabled(true);
                 break;
             case "2":
-                t1.setText(t1.getText() + 2);
+                pin.setText(pin.getText() + 2);
                 delete.setEnabled(true);
                 break;
             case "3":
-                t1.setText(t1.getText() + 3);
+                pin.setText(pin.getText() + 3);
                 delete.setEnabled(true);
                 break;
             case "4":
-                t1.setText(t1.getText() + 4);
+                pin.setText(pin.getText() + 4);
                 delete.setEnabled(true);
                 break;
             case "5":
-                t1.setText(t1.getText() + 5);
+                pin.setText(pin.getText() + 5);
                 delete.setEnabled(true);
                 break;
             case "6":
-                t1.setText(t1.getText() + 6);
+                pin.setText(pin.getText() + 6);
                 delete.setEnabled(true);
                 break;
             case "7":
-                t1.setText(t1.getText() + 7);
+                pin.setText(pin.getText() + 7);
                 delete.setEnabled(true);
                 break;
             case "8":
-                t1.setText(t1.getText() + 8);
+                pin.setText(pin.getText() + 8);
                 delete.setEnabled(true);
                 break;
             case "9":
-                t1.setText(t1.getText() + 9);
+                pin.setText(pin.getText() + 9);
                 delete.setEnabled(true);
                 break;
 
             case "<":
-                if(!t1.getText().isEmpty() ){
-                String text = t1.getText();
-                text = text.substring(0,text.length()-1);
-                t1.setText(text);
+                if(!pin.getText().isEmpty() ){
+                    String text = pin.getText();
+                    text = text.substring(0,text.length()-1);
+                    pin.setText(text);
                 }
                 else{JOptionPane.showMessageDialog(this, "Password field is already empty ");
-                delete.setEnabled(false);}
+                    delete.setEnabled(false);}
                 break;
 
             case "Sign-up":
                 SignUp s = new SignUp();
-                default:
-            }
-
-
+            default:
         }
 
 
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-    if(e.getSource() == l1 ){
-        l1.setBackground(Color.red);
-    }
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-       
-    if(e.getSource() == l1 ){
-         l1.setBackground(new Color(0, 103, 0));
+
+
     }
-    }
+
+
 }
+
 
 

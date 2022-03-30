@@ -185,7 +185,7 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
                 break;
 
             case "Log Out":
-                Login login = new Login();
+                Login_landscape login = new Login_landscape();
                 p.flushHist();
                 this.dispose();
                 break;
