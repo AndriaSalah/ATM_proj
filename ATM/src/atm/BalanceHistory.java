@@ -19,7 +19,7 @@ public class BalanceHistory extends JFrame implements ActionListener {
     JLabel l1, l2, l3, l4;
     JScrollPane sc = new JScrollPane();
     JPanel pb, p1, p2, p3, p4;
-    CustomerData p = new CustomerData();
+    CustomerDataSQL p = new CustomerDataSQL();
     DefaultTableModel model = new DefaultTableModel();
     JTable T1 = new JTable(model);
     Border border = new LineBorder(new Color(190,192,203),1,false);
@@ -80,8 +80,8 @@ public class BalanceHistory extends JFrame implements ActionListener {
             model.addColumn(headers[i]);
         }
 
-        for (int i = 0; i < p.place.size(); i++) {
-            model.addRow(new Object [] {p.place.get(i),p.price.get(i)});
+        for (int i = 0; i < p.place_list.size(); i++) {
+            model.addRow(new Object [] {p.place_list.get(i),p.price_list.get(i)});
         }
         T1.setBackground(new Color(2, 94, 2));
         T1.setFont(f);

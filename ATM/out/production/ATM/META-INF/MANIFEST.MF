@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: atm.ATM
+Class-Path: flatlaf-2.0.1.jar flatlaf-2.0.1.jar mssql-jdbc-10.2.1.jre17.
+ jar
+

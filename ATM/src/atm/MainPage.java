@@ -21,7 +21,7 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
     Color c = new Color(60, 70, 92);
     Font f = new Font("SansSerif", Font.PLAIN, 17);
     Font f2 = new Font("SansSerif", Font.PLAIN, 34);
-    CustomerData p = new CustomerData();
+    CustomerDataSQL p = new CustomerDataSQL();
     ImageIcon icon = createImageIcon("image/download.png", "bank logo");
     JPanel pb, p1, p2, p3, p4;
     JLabel l1 = new JLabel("Welcome, "+p.Owner_Name,icon,SwingConstants.CENTER) ;
@@ -186,7 +186,6 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
 
             case "Log Out":
                 Login_landscape login = new Login_landscape();
-                p.flushHist();
                 this.dispose();
                 break;
             default:

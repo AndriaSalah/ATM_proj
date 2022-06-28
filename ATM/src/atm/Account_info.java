@@ -12,7 +12,7 @@ public class Account_info extends JFrame {
     JPanel pb, p1, p2, p3, p4, p5;
     JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10;
 
-    CustomerData p = new CustomerData();
+    CustomerDataSQL p = new CustomerDataSQL();
     Font f = new Font("SansSerif", Font.BOLD, 20);
     Font f2 = new Font("SansSerif", Font.ITALIC, 20);
     Border border = new LineBorder(Color.BLACK, 2, false);

@@ -15,7 +15,7 @@ public class Withdraw extends JFrame implements ActionListener {
     Font f = new Font("SansSerif",Font.PLAIN,17);
     Font f2 = new Font("SansSerif",Font.PLAIN,34);
 
-    CustomerData p = new CustomerData();
+    CustomerDataSQL p = new CustomerDataSQL();
 
     public Withdraw ( ){
         //sets how the ui components would look like
@@ -112,8 +112,10 @@ public class Withdraw extends JFrame implements ActionListener {
                 check(Integer.parseInt(t2.getText()));
                 JOptionPane.showMessageDialog(this,"money is withdrawn successfully");
                 t2.setText("");
-                p.place.add("withdraw");
+                p.place="withdraw";
                 p.flushtodb();
+                p.GetHistoryfromdb();
+
                 }
                 else {t2.setText("");}
 
@@ -133,11 +135,11 @@ public class Withdraw extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "couldn't withdraw this extra " + num + " in cash ");
             t1.setText(String.valueOf(p.balance));
             t2.setText("");
-            p.price.add(p.balance);
+            p.price=p.balance;
         }
         else{
             p.balance -= num;
-            p.price.add(num);
+            p.price=num;
             t1.setText(String.valueOf(p.balance));
             t2.setText("");
 

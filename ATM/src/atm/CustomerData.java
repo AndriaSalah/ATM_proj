@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.sql.*;
 
-public  class CustomerData implements sql_interface{
+
+public  class CustomerData{
 static String num ;
 
 
@@ -16,7 +16,7 @@ static String num ;
     public static  String cards      ;
     public static  String mobile     ;
     public static  int  owe          ;
-    private static String  pin          ;
+;
 
     public static  int  balance_temp      ;
     public static  String account_id_temp ;
@@ -24,7 +24,7 @@ static String num ;
     public static  String cards_temp      ;
     public static  String mobile_temp     ;
     public static  int  owe_temp          ;
-    private static String  pin_temp          ;
+
 
 
 
@@ -36,33 +36,33 @@ static ArrayList<Object> place_temp = new ArrayList<>();
 
 
     public boolean get_data(String num) {
-//        this.num = num;
-//        ArrayList<String> temp = new ArrayList<>() ;
-//        File myfile = new File("Data/"+num+".txt");
-//        Scanner in ;
-//        if (myfile.exists()) {
-//            try {
-//                in = new Scanner(new FileReader("Data/"+num+".txt"));
-//            } catch (FileNotFoundException e) {
-//               return false;
-//            }
-//            while(in.hasNextLine()){
-//
-//                temp.add(in.nextLine());
-//
-//            }
-//
-//            Owner_Name = temp.get(0);
-//            balance = Integer.parseInt(temp.get(1));
-//            account_id = temp.get(2);
-//            cards = temp.get(3);
-//            mobile = temp.get(4);
-//            owe = Integer.parseInt(temp.get(5));
-//            in.close();
-//            get_history();
-//            return true;
-//        }
-//        else
+        this.num = num;
+        ArrayList<String> temp = new ArrayList<>() ;
+        File myfile = new File("Data/"+num+".txt");
+        Scanner in ;
+        if (myfile.exists()) {
+            try {
+                in = new Scanner(new FileReader("Data/"+num+".txt"));
+            } catch (FileNotFoundException e) {
+               return false;
+            }
+            while(in.hasNextLine()){
+
+                temp.add(in.nextLine());
+
+            }
+
+            Owner_Name = temp.get(0);
+            balance = Integer.parseInt(temp.get(1));
+            account_id = temp.get(2);
+            cards = temp.get(3);
+            mobile = temp.get(4);
+            owe = Integer.parseInt(temp.get(5));
+            in.close();
+            get_history();
+            return true;
+        }
+        else
              return false;
    }
 
@@ -185,88 +185,6 @@ static ArrayList<Object> place_temp = new ArrayList<>();
 
     }
 
-    @Override
-    public void flushtodb() {
-        try {
-            Connection db = DriverManager.getConnection(url);
-            Statement statement_handler = db.createStatement();
-            String sql = "update customer set balance = " + balance + ", owed_money = " + owe
-                    + "where account_id like ('%"+pin+"');"  ;
-            System.out.println(sql);
-            statement_handler.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void GetTempfromdb(String transit) {
-        try {
-            Connection db = DriverManager.getConnection(url);
-            Statement statement_handler = db.createStatement();
-            String sql = "select Balance from customer where account_id like ('%"+transit+"');";
-            System.out.println(sql);
-            ResultSet sql_result = statement_handler.executeQuery(sql);
-            if(sql_result.next()){
-                balance_temp =sql_result.getInt(1);
-                pin_temp = transit;
-                System.out.println(balance_temp);
-                System.out.println("loaded successfully");
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void FlushTemptodb() {
-        try {
-            Connection db = DriverManager.getConnection(url);
-            Statement statement_handler = db.createStatement();
-            String sql = "update customer set balance = " + balance_temp
-                    + " where account_id like ('%"+pin_temp+"');"  ;
-            System.out.println(sql);
-            statement_handler.executeUpdate(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void GetTempHistoryfromdb(String buffer) {
-
-    }
-
-    @Override
-    public boolean getfromdb(String buffer) {
-        try {
-            Connection db = DriverManager.getConnection(url);
-            Statement statement_handler = db.createStatement();
-            String sql = "select * from customer where account_id like ('%"+buffer+"');";
-            System.out.println(sql);
-            ResultSet sql_result = statement_handler.executeQuery(sql);
-            if(sql_result.next()){
-                Owner_Name = sql_result.getString(1);
-                account_id = sql_result.getString(2);
-                cards = String.valueOf(sql_result.getInt(3));
-                balance =sql_result.getInt(4);
-                owe = sql_result.getInt(5);
-                mobile = String.valueOf(sql_result.getInt(6));
-                pin = buffer;
-                return true;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    @Override
-    public void GetHistoryfromdb(String buffer) {
-
-    }
 
 
 }

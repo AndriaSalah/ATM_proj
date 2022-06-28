@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class SignUp extends JFrame implements ActionListener, MouseListener,sql_interface {
+public class SignUp extends JFrame implements ActionListener, MouseListener{
 
     String name;
     String mobile;
@@ -31,6 +31,8 @@ public class SignUp extends JFrame implements ActionListener, MouseListener,sql_
     boolean click2 = false;
     boolean click3 = false;
 
+    final static String url = "jdbc:sqlserver://atm-proj.mssql.somee.com;packet size=4096;user=sevengunz_SQLLogin_1;password=ghbdpgkykd;data source=atm-proj.mssql.somee.com;persist security info=False;initial catalog=atm-proj; encrypt = false";
+    final static String url2 = "jdbc:sqlserver://localhost:1433;databaseName=atm;integratedSecurity=true;encrypt = false";
     public SignUp() {
         FlatDarkLaf.setup();
         UIManager.put("Button.arc", 20);
@@ -118,7 +120,7 @@ public class SignUp extends JFrame implements ActionListener, MouseListener,sql_
             }
             sb.append(pin);
             account_number = sb.toString();
-        } while (!randcheck());
+        } while (!randchecksql());
 
     }
 
@@ -144,7 +146,30 @@ public class SignUp extends JFrame implements ActionListener, MouseListener,sql_
         }
         return true;
     }
-
+boolean randchecksql(){
+        try{
+    ArrayList<String> temp = new ArrayList<>();
+    Connection db = DriverManager.getConnection(url);
+    Statement statement_handler = db.createStatement();
+    String sql = "select account_id from customer ;";
+    System.out.println(sql);
+    ResultSet sql_result =null;
+    statement_handler.executeQuery(sql);
+    sql_result = statement_handler.executeQuery(sql);
+    while (sql_result.next()) {
+       temp.add(sql_result.getString(1));
+    }
+            for (int i = 0; i < temp.size(); i++) {
+                if (account_number.equals(temp.get(i))) {
+                    System.out.println("sql '' no duplicates found");
+                    return false;
+                }
+            }
+} catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
+        return true;
+}
     public void genCardnum() {
         try {
             int i = 0;
@@ -166,6 +191,37 @@ public class SignUp extends JFrame implements ActionListener, MouseListener,sql_
             e.printStackTrace();
 
         }
+    }
+    public void genCardnumsql(){
+        try{
+            int i = 0;
+            ArrayList<Integer> temp = new ArrayList<>();
+            Connection db = DriverManager.getConnection(url);
+            Statement statement_handler = db.createStatement();
+            String sql = "select card_number from customer ;";
+            System.out.println(sql);
+            ResultSet sql_result =null;
+            statement_handler.executeQuery(sql);
+            sql_result = statement_handler.executeQuery(sql);
+            while (sql_result.next()) {
+                temp.add(sql_result.getInt(1));
+            }
+            if (temp.size() > 0) {
+                do {
+                    card_number = (int) ((Math.random() * 100000000) + 999999999);
+                    i++;
+                } while (Integer.toString(card_number).equals(temp.get(i - 1)) && i < temp.size());
+            } else {
+                card_number = (int) ((Math.random() * 100000000) + 999999999);
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+        System.out.println("sql card generated");
     }
 
     public void flush() {
@@ -277,8 +333,7 @@ public class SignUp extends JFrame implements ActionListener, MouseListener,sql_
                         mobile = Mobile.getText();
                         pin = Pin.getText();
                         genAccNo(pin);
-                        genCardnum();
-                        flush();
+                        genCardnumsql();
                         flushtodb();
                         JOptionPane.showMessageDialog(this, "account Created successfully");
                         JOptionPane.showMessageDialog(this, "please enter your pin in the login page to access your account");
@@ -376,9 +431,10 @@ public class SignUp extends JFrame implements ActionListener, MouseListener,sql_
         }
     }
 
-    @Override
+
     public void flushtodb() {
         try {
+
             Connection db = DriverManager.getConnection(url);
             Statement statement_handler = db.createStatement();
             String sql = "insert into customer values ('" +
@@ -392,28 +448,5 @@ public class SignUp extends JFrame implements ActionListener, MouseListener,sql_
         }
     }
 
-    @Override
-    public void GetTempfromdb(String transit) {
 
-    }
-
-    @Override
-    public void FlushTemptodb() {
-
-    }
-
-    @Override
-    public void GetTempHistoryfromdb(String buffer) {
-
-    }
-
-    @Override
-    public boolean getfromdb(String buffer) {
-        return false;
-    }
-
-    @Override
-    public void GetHistoryfromdb(String buffer) {
-
-    }
 }

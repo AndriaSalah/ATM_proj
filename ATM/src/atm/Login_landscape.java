@@ -22,7 +22,7 @@ public class Login_landscape extends JFrame implements ActionListener,MouseListe
     JPasswordField pin;
     JButton b, Login, Exit, zero, delete, Sign_up;
 
-    CustomerData p = new CustomerData();
+    CustomerDataSQL p = new CustomerDataSQL();
     Border border = new LineBorder(Color.BLACK, 1, true);
     JLabel Header, label;
     public Login_landscape() {

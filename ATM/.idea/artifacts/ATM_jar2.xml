@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="ATM:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/ATM_jar2</output-path>
+    <root id="root">
+      <element id="archive" name="ATM.jar">
+        <element id="module-output" name="ATM" />
+      </element>
+      <element id="library" level="project" name="flatlaf-2.0.1" />
+      <element id="library" level="project" name="flatlaf-2.0.11" />
+      <element id="library" level="project" name="mssql-jdbc-10.2.1.jre17" />
+    </root>
+  </artifact>
+</component>

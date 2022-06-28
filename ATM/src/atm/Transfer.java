@@ -21,7 +21,7 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
     JPanel buttonpanel = new JPanel();
     ImageIcon incorrect = createImageIcon("image/incorrect.png", "Unverified logo");
     ImageIcon correct = createImageIcon("image/correct.png", "Verified logo");
-    CustomerData c = new CustomerData();
+    CustomerDataSQL c = new CustomerDataSQL();
     String transit;
     Color co = new Color(0, 103, 0);
     Color co1 = new Color(103, 0, 0);
@@ -117,17 +117,18 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
                  else {
                         transfer(Account_number.getText());
                         JOptionPane.showMessageDialog(this, "Transfer successful");
-                        c.get_temp_history(transit);
-                        c.place.add("Transfer-out");
-                        c.price.add(Transfer_amount.getText());
-                        c.place_temp.add("Transfer-in");
-                        c.price_temp.add(Transfer_amount.getText());
+
+                        c.place = "Transfer-out";
+                        c.price = Integer.parseInt(Transfer_amount.getText());
+                        c.place_temp = "Transfer-in";
+                        c.price_temp= Integer.parseInt(Transfer_amount.getText());
                         Account_number.setText("");
                         Transfer_amount.setText("");
-                        c.flush();
+
                         c.flushtodb();
-                        c.flush_temp(transit);
+                        c.GetHistoryfromdb();
                         c.FlushTemptodb();
+
                         Transfer.setBackground(co2);
                         //Check.setBackground(co);
                         Transfer.setEnabled(false);
@@ -169,7 +170,6 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
         } catch (FileNotFoundException e) {
 
         }
-        c.GetTransferAccount(transit);
         c.GetTempfromdb(transit);
         c.balance_temp += Integer.parseInt(Transfer_amount.getText());
         c.balance -= Integer.parseInt(Transfer_amount.getText());
