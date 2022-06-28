@@ -4,7 +4,7 @@ This is an Atm gui project which contains the following features:
 3-Credit-card payment
 4-Balance history
 5-Login page
-6-Dynamic data which is read from files and saved to it 
+6-Dynamic data which is read/written from sql server(mssms) 
 7-Sigin Up 
 8-Transfer between accounts
 
