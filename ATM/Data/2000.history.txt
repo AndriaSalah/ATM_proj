@@ -1,0 +1,10 @@
+Deposit
+1000
+withdraw
+0
+Deposit
+10000000
+Internal Credit payment
+30000
+Transfer-out
+1000

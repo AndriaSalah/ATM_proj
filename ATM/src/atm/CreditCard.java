@@ -122,7 +122,7 @@ public class CreditCard extends JFrame implements ActionListener {
                                     JOptionPane.showMessageDialog(this, "money is deposited into your card successfully");
                                     p.place.add("Internal Credit payment");
                                     t2.setText("");
-                                    p.flush();
+                                    p.flushtodb();
                                     break;
                                 }
                                 JOptionPane.showMessageDialog(this,"operation canceled successfully");

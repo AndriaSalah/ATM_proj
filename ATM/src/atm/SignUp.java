@@ -8,11 +8,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.*;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class SignUp extends JFrame implements ActionListener, MouseListener {
+public class SignUp extends JFrame implements ActionListener, MouseListener,sql_interface {
 
     String name;
     String mobile;
@@ -278,6 +279,7 @@ public class SignUp extends JFrame implements ActionListener, MouseListener {
                         genAccNo(pin);
                         genCardnum();
                         flush();
+                        flushtodb();
                         JOptionPane.showMessageDialog(this, "account Created successfully");
                         JOptionPane.showMessageDialog(this, "please enter your pin in the login page to access your account");
                         this.dispose();
@@ -372,5 +374,46 @@ public class SignUp extends JFrame implements ActionListener, MouseListener {
                 }
             }
         }
+    }
+
+    @Override
+    public void flushtodb() {
+        try {
+            Connection db = DriverManager.getConnection(url);
+            Statement statement_handler = db.createStatement();
+            String sql = "insert into customer values ('" +
+                    name+"','"+account_number+"',"+card_number+","+300000+","
+                    +20000+","+mobile+
+                    ");";
+            statement_handler.executeUpdate(sql);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void GetTempfromdb(String transit) {
+
+    }
+
+    @Override
+    public void FlushTemptodb() {
+
+    }
+
+    @Override
+    public void GetTempHistoryfromdb(String buffer) {
+
+    }
+
+    @Override
+    public boolean getfromdb(String buffer) {
+        return false;
+    }
+
+    @Override
+    public void GetHistoryfromdb(String buffer) {
+
     }
 }

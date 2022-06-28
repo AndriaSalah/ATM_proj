@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Login_landscape extends JFrame implements ActionListener,MouseListener {
+public class Login_landscape extends JFrame implements ActionListener,MouseListener{
 
     //frame stuff
     JPasswordField pin;
@@ -181,7 +181,8 @@ public class Login_landscape extends JFrame implements ActionListener,MouseListe
     public void verify() {
 
         String buffer = (pin.getText());
-        if (p.get_data(buffer)) {
+//        if (p.get_data(buffer)) {
+        if(p.getfromdb(buffer)){
             MainPage m = new MainPage();
             this.dispose();
 

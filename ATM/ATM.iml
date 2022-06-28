@@ -7,5 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="flatlaf-2.0.11" level="project" />
+    <orderEntry type="library" name="flatlaf-2.0.1" level="project" />
+    <orderEntry type="library" name="mssql-jdbc-10.2.1.jre17" level="project" />
   </component>
 </module>

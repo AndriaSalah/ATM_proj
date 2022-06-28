@@ -125,7 +125,9 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
                         Account_number.setText("");
                         Transfer_amount.setText("");
                         c.flush();
+                        c.flushtodb();
                         c.flush_temp(transit);
+                        c.FlushTemptodb();
                         Transfer.setBackground(co2);
                         //Check.setBackground(co);
                         Transfer.setEnabled(false);
@@ -168,6 +170,7 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
 
         }
         c.GetTransferAccount(transit);
+        c.GetTempfromdb(transit);
         c.balance_temp += Integer.parseInt(Transfer_amount.getText());
         c.balance -= Integer.parseInt(Transfer_amount.getText());
         Balance.setText(Integer.toString(c.balance));

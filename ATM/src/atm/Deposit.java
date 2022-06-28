@@ -102,7 +102,7 @@ public class Deposit extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "money is deposited successfully");
                 p.place.add("Deposit");
                 t2.setText("");
-                p.flush();
+                p.flushtodb();
                 break;
             case "Clear":
                 t2.setText("");
