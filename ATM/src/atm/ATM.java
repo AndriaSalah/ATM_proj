@@ -28,7 +28,7 @@ public class ATM {
     frame1.setVisible(true);
     frame1.setLocationRelativeTo(null);
     frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+    test_loading t = new test_loading();
 //     Login_portrait frame2 = new Login_portrait();
 //     frame2.setTitle("National Bank Of Egypt ATM");
 //     frame2.setVisible(true);

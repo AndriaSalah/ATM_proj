@@ -6,10 +6,8 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Transfer extends JFrame implements ActionListener, DocumentListener {
     JButton Transfer, Cancel;
@@ -27,6 +25,8 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
     Color co1 = new Color(103, 0, 0);
     Color co2 = new Color(91, 91, 91);
     ErrorHandel err = new ErrorHandel();
+    final static String url = "jdbc:sqlserver://atm-proj.mssql.somee.com;packet size=4096;user=sevengunz_SQLLogin_1;password=ghbdpgkykd;data source=atm-proj.mssql.somee.com;persist security info=False;initial catalog=atm-proj; encrypt = false";
+
     public Transfer() {
         //Icons that shows when the account number that was entered is verified to be actually there or not
         Incorrect = new JLabel(incorrect);
@@ -152,25 +152,7 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
         //those 4 letters are then loaded in a variable called transit that is passed to customer data to load the temp account data into the application
         //from then whatever is sent will be loaded in their main data and history
         ArrayList<String> buffer = new ArrayList<>();
-        File myfile = new File("Data/AllAccounts.txt");
-        try {
-            Scanner in = new Scanner(myfile);
-            while (in.hasNextLine()) {
-                buffer.add(in.nextLine());
-            }
-            in.close();
-            for (int i = 0; i < buffer.size(); i++) {
-                if (account_number.equals(buffer.get(i))) {
-                    transit = buffer.get(i).substring(5, 9);
-                    break;
-                }
-            }
-
-
-        } catch (FileNotFoundException e) {
-
-        }
-        c.GetTempfromdb(transit);
+        c.GetTempfromdb(account_number);
         c.balance_temp += Integer.parseInt(Transfer_amount.getText());
         c.balance -= Integer.parseInt(Transfer_amount.getText());
         Balance.setText(Integer.toString(c.balance));
@@ -186,18 +168,24 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
     public boolean check(String Account_number) {
         boolean found = false;
         ArrayList<String> temp = new ArrayList<>();
-        File myfile = new File("Data/AllAccounts.txt");
         try {
-            Scanner in = new Scanner(myfile);
-            while (in.hasNextLine()) {
-                temp.add(in.nextLine());
-            }
-            for (int i = 0; i < temp.size(); i++) {
-                if (Account_number.equals(temp.get(i))) {
-                    found = true;
+            Connection db = DriverManager.getConnection(url);
+            Statement statement_handler = db.createStatement();
 
-                }
+        String sql = "select account_id from customer ;";
+        System.out.println(sql);
+        ResultSet sql_result = statement_handler.executeQuery(sql);
+            while (sql_result.next()){
+               if(Account_number.equals(sql_result.getString(1))){
+                   found = true;
+                   break;
+               }
             }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
             if (found) {
                 Correct.setVisible(true);
                 Incorrect.setVisible(false);
@@ -212,12 +200,11 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
                 Transfer.setBackground(co2);
                 return false;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        return true;
         }
 
-        return true;
-    }
+
+
 
     protected ImageIcon createImageIcon(String path, String description) {
         java.net.URL imgURL = getClass().getResource(path);

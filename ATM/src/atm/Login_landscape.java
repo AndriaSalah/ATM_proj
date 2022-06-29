@@ -25,6 +25,14 @@ public class Login_landscape extends JFrame implements ActionListener,MouseListe
     CustomerDataSQL p = new CustomerDataSQL();
     Border border = new LineBorder(Color.BLACK, 1, true);
     JLabel Header, label;
+    ImageIcon loading = new ImageIcon("G:\\Projects\\ATM_proj\\ATM\\src\\atm\\Image\\loading (2).gif");
+    JLabel l = new JLabel( loading, JLabel.CENTER);
+    JPanel basepanel =new JPanel (new GridLayout(1,2));
+    JPanel extra = new JPanel(new GridLayout(2,1));
+    JPanel extra2 = new JPanel(new BorderLayout());
+
+
+    JPanel p1, p2, p3, p4, p5, p6,panimation;
     public Login_landscape() {
         //change how the ui components will look like
         FlatDarkLaf.setup();
@@ -33,6 +41,8 @@ public class Login_landscape extends JFrame implements ActionListener,MouseListe
         UIManager.put( "ProgressBar.arc", 200 );
         UIManager.put( "TextComponent.arc", 200 );
         // change the color of the title bar
+        JPanel p = new JPanel();
+        p.setBackground(new Color(60, 70, 92));
         JFrame.setDefaultLookAndFeelDecorated(true);
         this.getRootPane().putClientProperty("JRootPane.titleBarBackground", new Color(0, 103, 0));
         this.getRootPane().putClientProperty("JRootPane.titleBarForeground", Color.white);
@@ -48,12 +58,7 @@ public class Login_landscape extends JFrame implements ActionListener,MouseListe
         //basically we divide our design into a series of panels that will have some specific components as some times
         //a single panel with single design won't fulfill the design we want it to have
         //panel init
-        JPanel basepanel =new JPanel (new GridLayout(1,2));
-        JPanel extra = new JPanel(new GridLayout(2,1));
-        JPanel extra2 = new JPanel(new BorderLayout());
-        JPanel p = new JPanel();
-        p.setBackground(new Color(60, 70, 92));
-        JPanel p1, p2, p3, p4, p5, p6;
+
 
         p.setLayout(new BorderLayout());
 
@@ -169,12 +174,16 @@ public class Login_landscape extends JFrame implements ActionListener,MouseListe
         p4.add(Exit);
         p4.add(Sign_up);
         p.add(p4,BorderLayout.SOUTH);
+        panimation = new JPanel(new BorderLayout());
+        panimation.add(l,BorderLayout.CENTER);
+        panimation.setVisible(false);
         //extra.add(p2);
         extra.add(p3);
         extra.add(p6);
         basepanel.add(p);
         basepanel.add(extra);
         extra2.add(basepanel,BorderLayout.CENTER);
+        this.add(panimation);
         this.add(extra2);
     }
 
@@ -198,6 +207,8 @@ public class Login_landscape extends JFrame implements ActionListener,MouseListe
         switch (e.getActionCommand()) {
 
             case "Login":
+                extra2.setVisible(false);
+                panimation.setVisible(true);
                 verify();
                 break;
             case "Exit":

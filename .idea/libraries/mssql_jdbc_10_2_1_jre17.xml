@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="mssql-jdbc-10.2.1.jre17">
+    <CLASSES>
+      <root url="jar://C:/Program Files/Microsoft JDBC DRIVER 10.2 for SQL Server/sqljdbc_10.2/enu/mssql-jdbc-10.2.1.jre17.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

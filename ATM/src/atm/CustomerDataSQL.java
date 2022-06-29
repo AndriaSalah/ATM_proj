@@ -120,7 +120,7 @@ public class CustomerDataSQL {
         try {
             Connection db = DriverManager.getConnection(url);
             Statement statement_handler = db.createStatement();
-            String sql = "select Balance,account_id from customer where account_id like ('%"+transit+"');";
+            String sql = "select Balance,account_id from customer where account_id like ('"+account_id_temp+"');";
             System.out.println(sql);
             ResultSet sql_result = statement_handler.executeQuery(sql);
             if(sql_result.next()){
