@@ -8,8 +8,8 @@ This is an Atm gui project which contains the following features:
 7-Sigin Up 
 8-Transfer between accounts
 
-Depositing and Withdrawing are basically the same code just some minor differences like the change of the withdraw button into deposit ad vice versa
-The database used is relativley simple here is the erd for it
+Depositing and Withdrawing are basically the same code just some minor differences like the change of the withdraw button into deposit ad vice versa.
+The database used is relativley simple, here is the erd for it
 ![Untitled Diagram drawio](https://user-images.githubusercontent.com/74527457/176364883-7e3caaf0-33f7-43b9-a61c-7a56ebde084d.png)
 
 as you can see it's just two entities with a primary key account_id which is the main key for how everything in this application works.
