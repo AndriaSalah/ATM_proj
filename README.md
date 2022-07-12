@@ -1,3 +1,4 @@
+quick note , there are two branches for this project one with sql and one with file system
 This is an Atm gui project which contains the following features:
 1-Depositing
 2-Withdrawing
