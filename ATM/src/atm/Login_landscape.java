@@ -190,15 +190,29 @@ public class Login_landscape extends JFrame implements ActionListener,MouseListe
     public void verify() {
 
         String buffer = (pin.getText());
-//        if (p.get_data(buffer)) {
-        if(p.getfromdb(buffer)){
-            MainPage m = new MainPage();
-            this.dispose();
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Pin is incorrect please try again", "Failed Login", JOptionPane.ERROR_MESSAGE);
-            pin.setText("");
+        switch (p.getfromdb(buffer)) {
+            //return 1 means that the user was found and logged in successfully
+            case 1 :
+                MainPage m = new MainPage();
+                this.dispose();
+                break;
+                //return 2 means the user couldn't be found
+            case 2 :
+                JOptionPane.showMessageDialog(this, "Pin is incorrect please try again", "Failed Login", JOptionPane.ERROR_MESSAGE);
+                pin.setText("");
+                break;
+                //return 3 means there was a problem connecting to the db
+            case 3 :
+                JOptionPane.showMessageDialog(null,"Please check if you internet connection is working and try again");
+                pin.setText("");
+                break;
         }
+
+
+
+
+
+
 
     }
 
@@ -207,8 +221,8 @@ public class Login_landscape extends JFrame implements ActionListener,MouseListe
         switch (e.getActionCommand()) {
 
             case "Login":
-                extra2.setVisible(false);
-                panimation.setVisible(true);
+//                extra2.setVisible(false);
+//                panimation.setVisible(true);
                 verify();
                 break;
             case "Exit":

@@ -23,8 +23,8 @@ public class MainPage extends JFrame implements ActionListener, MouseListener {
     Font f2 = new Font("SansSerif", Font.PLAIN, 34);
     CustomerDataSQL p = new CustomerDataSQL();
     ImageIcon icon = createImageIcon("image/download.png", "bank logo");
-    ImageIcon loading = new ImageIcon("Image/loading.gif");
-    JLabel l = new JLabel( loading, JLabel.CENTER);
+    //ImageIcon loading = new ImageIcon("Image/loading.gif");
+    //JLabel l = new JLabel( loading, JLabel.CENTER);
     JPanel pb, p1, p2, p3, p4,panimation;
     JLabel l1 = new JLabel("Welcome, "+p.Owner_Name,icon,SwingConstants.CENTER) ;
     public MainPage() {

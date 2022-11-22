@@ -115,7 +115,9 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
                 }
                 //starts the transfer process by calling the transfer method
                  else {
+                        System.out.println(Account_number.getText());
                         transfer(Account_number.getText());
+
                         JOptionPane.showMessageDialog(this, "Transfer successful");
 
                         c.place = "Transfer-out";
@@ -151,8 +153,9 @@ public class Transfer extends JFrame implements ActionListener, DocumentListener
         // to get the last 4 numbers as they are the pin of the account and the name of the data file of the account we want to transfer to
         //those 4 letters are then loaded in a variable called transit that is passed to customer data to load the temp account data into the application
         //from then whatever is sent will be loaded in their main data and history
-        ArrayList<String> buffer = new ArrayList<>();
-        c.GetTempfromdb(account_number);
+        //ArrayList<String> buffer = new ArrayList<>();
+        System.out.println(account_number);
+       c.GetTempfromdb(account_number);
         c.balance_temp += Integer.parseInt(Transfer_amount.getText());
         c.balance -= Integer.parseInt(Transfer_amount.getText());
         Balance.setText(Integer.toString(c.balance));

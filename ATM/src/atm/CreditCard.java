@@ -120,7 +120,7 @@ public class CreditCard extends JFrame implements ActionListener {
                             if (checkBalance()) {
                                 if (checkb()) {
                                     JOptionPane.showMessageDialog(this, "money is deposited into your card successfully");
-                                    p.place_list.add("Internal Credit payment");
+                                    p.place = "Internal payment";
                                     t2.setText("");
                                     p.flushtodb();
                                     break;
@@ -135,7 +135,7 @@ public class CreditCard extends JFrame implements ActionListener {
                     else if(checkowe()) {
                         check(Integer.parseInt(t2.getText()));
                         JOptionPane.showMessageDialog(this, "money is deposited into your card successfully");
-                        p.place_list.add("Credit payment");
+                        p.place ="Credit payment";
                         t2.setText("");
                         p.flushtodb();
                     }
@@ -153,7 +153,7 @@ public class CreditCard extends JFrame implements ActionListener {
 
         public void check(int num){
             if (p.owe-num < 0 ){
-                p.price_list.add(p.owe);
+                p.price=p.owe;
                 num -= p.owe;
                 p.owe = 0 ;
                 JOptionPane.showMessageDialog(this, "Returning extra " + num + " cash that was deposited ");
@@ -161,7 +161,7 @@ public class CreditCard extends JFrame implements ActionListener {
                  t2.setText("");}
             else{
                 p.owe -= num;
-                p.price_list.add(num);
+                p.price=num;
                 t1.setText(String.valueOf(p.owe));
                 t2.setText("");
 
@@ -179,7 +179,7 @@ public class CreditCard extends JFrame implements ActionListener {
         public boolean checkb(){
 
             if(p.owe < p.balance){
-            p.price_list.add(p.owe);
+            p.price = p.owe;
             p.balance -= p.owe;
             p.owe=0;
             t1.setText(String.valueOf(p.owe));
@@ -191,7 +191,7 @@ public class CreditCard extends JFrame implements ActionListener {
                 int dialogResult = JOptionPane.showConfirmDialog(this, "Available balance is insufficient to pay all the owed amount\nWould you like to use the availble amount anyway ? ", "Title on Box", dialogButton);
                 System.out.println(dialogResult);
             if(dialogResult == 0){
-                p.price_list.add(p.balance);
+                p.price = p.balance;
                 p.owe -= p.balance;
                 p.balance = 0;
                 t1.setText(String.valueOf(p.owe));
